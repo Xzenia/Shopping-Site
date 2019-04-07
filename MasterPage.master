@@ -1,0 +1,76 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" href="images/style.css" type="text/css" />
+	<title>RedTie</title>
+</head>
+<body>
+    <div id="page" align="center">
+		<div id="content" style="width:800px">
+			<div id="logo">
+				<div style="margin-top:70px" class="whitetitle">ASP.NET</div>
+			</div>
+			<div id="topheader">
+				<div align="left" class="bodytext">
+					<br />
+					<strong> Great Finds Wholesale Store </strong> <br />
+					BCS41<br />
+					2nd Semester<br />
+					SY 2018-2019<br />
+					
+				</div>
+				<div id="toplinks" class="smallgraytext">
+					<asp:Label ID="LoggedInLabel" runat="server" Text="You are not logged in."/>
+                    <br /> <br />
+                    
+                    
+                     <asp:HyperLink ID="AdminCornerLink" runat="server" NavigateUrl="~/AdminPage.aspx" Text="Admin's Corner |"/> <a href="ProfilePage.aspx">Profile</a>
+				</div>
+			</div>
+			<div id="menu">
+				<div align="right" class="smallwhitetext" style="padding:9px;">
+					<a href="Purchase.aspx">Purchase Items</a> | <a href ="MyTransactions.aspx">My Transactions</a> | <a href="Cart.aspx">Cart</a>
+				</div>
+			</div>
+			
+            <div id="contenttext">
+                <div style="padding:10px">
+                    <span class="titletext">Great Finds Wholesale Store</span>
+                </div>
+                <div class="bodytext" style="padding:12px;" align="justify">
+                    <strong>
+                    </strong>
+                    <br />
+                    <br />
+
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+                    
+     </div>
+         </div>
+			<div id="leftpanel">
+				<div align="justify" class="graypanel">
+					<center> 
+                        <span class="smalltitle">Coffee Grand Sale!</span> 
+                        <br /> <br />
+                        <span class="smalltitle">April 16 - 22</span>
+                    
+					
+				</div>
+			</div>
+			<div id="footer" class="smallgraytext">
+				Prepared By: Aaron Miguel N. Herbosa
+			</div>
+		</div>
+	</div>
+</body>
+</html>
