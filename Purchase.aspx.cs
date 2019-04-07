@@ -15,15 +15,4 @@ public partial class Purchase : System.Web.UI.Page
         ItemList.DataSource = itemDataSet;
         ItemList.DataBind();
     }
-
-    protected void ConfirmButton_Click(object sender, EventArgs e)
-    {
-        TransactionController transactionController = new TransactionController();
-        AccountController accountController = new AccountController();
-        ItemController itemController = new ItemController();
-        List<Item> itemList = new List<Item>();
-        List<string> errorList = new List<string>();
-
-        ErrorLabel.Text = "";
-    }
 }

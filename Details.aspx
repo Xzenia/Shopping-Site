@@ -25,7 +25,8 @@
         </tr>
         <tr>
             <td>
-                Quantity: <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="0" />
+                Quantity: <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" />
+                <td><asp:RangeValidator ID="RangeValidator1" runat="server" ForeColor="Red" ErrorMessage="Only numbers from 1-999 are allowed." ControlToValidate="QuantityTextBox" Display="Dynamic" MaximumValue="999" MinimumValue="1"></asp:RangeValidator>
             </td>
         </tr>
     </table>
