@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 
 public partial class AdminPage : System.Web.UI.Page
 {
@@ -42,13 +43,31 @@ public partial class AdminPage : System.Web.UI.Page
     protected void UpdateButton_Click(object sender, EventArgs e)
     {
         Item editedItem = new Item();
-        editedItem.Id = Convert.ToInt32(ItemIDTextBox.Text);
+        editedItem = itemController.retrieveItem(Convert.ToInt32(ItemIDTextBox.Text));
         editedItem.Name = ItemNameTextBox.Text;
         editedItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
         editedItem.Quantity = Convert.ToInt32(StockTextBox.Text);
 
         if (isAuthorized)
         {
+            if (ProductImageFileUpload.HasFile)
+            {
+                if (!Directory.Exists(Server.MapPath("~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/")))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/"));
+                }
+
+                string uploadFolderPath = Server.MapPath(@"~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/");
+
+                string uploadFilePath = uploadFolderPath + ProductImageFileUpload.FileName;
+
+                ProductImageFileUpload.SaveAs(uploadFilePath);
+
+                string filePath = @"~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/" + ProductImageFileUpload.FileName;
+
+                editedItem.ProductImagePath = filePath;
+            }
+          
             itemController.editItem(editedItem);
             refreshTable();
             clearFields();

@@ -5,6 +5,7 @@ public class Item
     private string name;
     private double pricePerItem;
     private int quantity;
+    private string productImagePath;
 
     public string Name
     {
@@ -55,6 +56,19 @@ public class Item
         set
         {
             id = value;
+        }
+    }
+
+    public string ProductImagePath
+    {
+        get
+        {
+            return productImagePath;
+        }
+
+        set
+        {
+            productImagePath = value;
         }
     }
 }

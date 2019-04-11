@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AddItemPage.aspx.cs" Inherits="AddItemPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AddItem.aspx.cs" Inherits="AddItem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h2> Add new item </h2>
@@ -14,6 +14,9 @@
         </tr>
         <tr> 
             <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" required="true"/> </td>
+        </tr>
+        <tr>
+            <td> Item Image(s):  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" /> </td>
         </tr>
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" /> </td>

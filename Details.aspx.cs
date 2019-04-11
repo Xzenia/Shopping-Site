@@ -23,6 +23,7 @@ public partial class Details : System.Web.UI.Page
             ProductNameLabel.Text = retrievedItem.Name;
             ProductPriceLabel.Text = "Price Per Item: "+retrievedItem.PricePerItem.ToString();
             ProductStockLabel.Text = "Stock available: "+retrievedItem.Quantity.ToString();
+            ProductImage.ImageUrl = retrievedItem.ProductImagePath;
         }
         else
         {

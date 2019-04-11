@@ -1,10 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Purchase.aspx.cs" Inherits="Purchase" %>
+﻿<%@Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Purchase.aspx.cs" Inherits="Purchase" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:DataList ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
         <ItemTemplate>
             <table>
+                <tr>
+                    <td>
+                        <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("ProductImagePath")%>' Height="100px" Width="120px" />
+                    </td>
+                </tr>
                 <tr>
                     <td> 
                          <strong> <%# Eval("Name") %> </strong>
