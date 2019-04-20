@@ -1,12 +1,12 @@
 ﻿
 public class Account
 {
-    private int memberId;
+    private string username;
 
-    public int MemberId
+    public string Username
     {
-        get { return memberId; }
-        set { memberId = value; }
+        get { return username; }
+        set { username = value; }
     }
     private string firstName;
 
@@ -44,4 +44,10 @@ public class Account
         get { return accountType; }
         set { accountType = value; }
     }
+}
+
+public enum AccountType
+{
+    Admin = 1,
+    Member = 2
 }

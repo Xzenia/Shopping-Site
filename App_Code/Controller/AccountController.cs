@@ -10,7 +10,7 @@ public class AccountController
     public void addAccount(Account newAccount){
         SqlCommand command = new SqlCommand("AddAccount", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@MemberID", newAccount.MemberId);
+        command.Parameters.AddWithValue("@Username", newAccount.Username);
         command.Parameters.AddWithValue("@FirstName", newAccount.FirstName);
         command.Parameters.AddWithValue("@LastName", newAccount.LastName);
         command.Parameters.AddWithValue("@AccountAddress", newAccount.Address);
@@ -33,7 +33,7 @@ public class AccountController
         ConstantVariables.connect.Open();
         SqlDataReader dataReader = command.ExecuteReader();
         while (dataReader.Read()){
-            accountUsername = Convert.ToString(dataReader["MemberID"]);
+            accountUsername = Convert.ToString(dataReader["Username"]);
             accountPassword = Convert.ToString(dataReader["Password"]);
         }
         ConstantVariables.connect.Close();
@@ -54,7 +54,7 @@ public class AccountController
         Account account = new Account();
         while (dataReader.Read())
         {
-            account.MemberId = Convert.ToInt32(dataReader["MemberID"]);
+            account.Username = dataReader["Username"].ToString();
             account.FirstName = Convert.ToString(dataReader["FirstName"]);
             account.LastName = Convert.ToString(dataReader["LastName"]);
             account.Address = Convert.ToString(dataReader["AccountAddress"]);
@@ -66,16 +66,30 @@ public class AccountController
         return account; 
     }
 
-    public static int generateId()
-    {
-        Random rnd = new Random();
-        return rnd.Next(1111111, 9999999);
-    }
-
     public bool isAccountAdmin(string username)
     {
         Account account = retrieveAccountDetails(username);
         if (account.AccountType == AccountType.Admin)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool doesAccountExist(string username)
+    {
+        SqlCommand command = new SqlCommand("RetrieveUsernameCount", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Username", username);
+
+        ConstantVariables.connect.Open();
+        int count = (int)command.ExecuteScalar();
+        ConstantVariables.connect.Close();
+
+        if (count > 0)
         {
             return true;
         }

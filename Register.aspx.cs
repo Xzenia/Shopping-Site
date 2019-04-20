@@ -16,10 +16,19 @@ public partial class Register : System.Web.UI.Page
         newAccount.Address = AddressTextBox.Text;
         newAccount.AccountType = AccountType.Member;
         newAccount.Password = PasswordTextBox.Text;
-        newAccount.MemberId = AccountController.generateId();
 
-        accountController.addAccount(newAccount);
+        if (!accountController.doesAccountExist(UsernameTextBox.Text))
+        {
+            newAccount.Username = UsernameTextBox.Text;
+            accountController.addAccount(newAccount);
+            ErrorLabel.Text = "Account added! You may now shop for items in the online store!";
+        }
+        else
+        {
+            ErrorLabel.Text = "Account with that username already exists!";
+        }
 
-        ErrorLabel.Text = "Account added! Your account number is "+newAccount.MemberId+". Please login your account to access the site's features.";
+
+       
     }
 }

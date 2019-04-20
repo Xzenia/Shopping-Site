@@ -4,25 +4,34 @@ using System.IO;
 
 public partial class AdminPage : System.Web.UI.Page
 {
-
     private bool isAuthorized;
     private ItemController itemController;
     private AccountController accountController;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         itemController = new ItemController();
         accountController = new AccountController();
 
-        if (Session["CurrentAccountID"] != null && accountController.isAccountAdmin(Session["CurrentAccountID"].ToString()))
+        if (Session["CurrentAccount"] != null)
         {
-            isAuthorized = true;
+            Account currentAccount = (Account)Session["CurrentAccount"];
+
+            if (accountController.isAccountAdmin(currentAccount.Username))
+            {
+                isAuthorized = true;
+                refreshTable();
+            }
+            else
+            {
+                isAuthorized = false;
+            }
         }
         else
         {
             isAuthorized = false;
         }
 
-        refreshTable();
     }
 
     protected void ItemGridView_SelectedIndexChanged(object sender, EventArgs e)

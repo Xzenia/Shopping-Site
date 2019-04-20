@@ -33,7 +33,7 @@
 			</div>
 			<div id="menu">
 				<div align="right" class="smallwhitetext" style="padding:9px;">
-					<a href="Purchase.aspx">Purchase Items</a> | <a href ="MyTransactions.aspx">My Transactions</a> | <a href="Cart.aspx">Cart</a>
+					<a href="Home.aspx">Home</a> | <a href ="MyTransactions.aspx">My Transactions</a> | <a href="Cart.aspx">Cart</a>
 				</div>
 			</div>
 			

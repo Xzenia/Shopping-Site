@@ -8,12 +8,12 @@ using System.Web;
 /// </summary>
 public class Transaction
 {
-    private int memberId;
+    private string username;
 
-    public int MemberId
+    public string Username
     {
-        get { return memberId; }
-        set { memberId = value; }
+        get { return username; }
+        set { username = value; }
     }
     private string date;
 

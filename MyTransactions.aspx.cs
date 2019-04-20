@@ -7,9 +7,10 @@ public partial class MyTransactions : System.Web.UI.Page
     {
         TransactionController transactionController = new TransactionController();
 
-        if (Session["CurrentAccountID"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            DataTable transactionDataTable = transactionController.viewTransaction(Session["CurrentAccountID"].ToString());
+            Account account = (Account)Session["CurrentAccount"];
+            DataTable transactionDataTable = transactionController.viewTransaction(account.Username);
 
             TransactionGridView.DataSource = transactionDataTable;
             TransactionGridView.DataBind();

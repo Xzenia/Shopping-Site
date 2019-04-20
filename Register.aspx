@@ -11,6 +11,10 @@
              <td>  <asp:TextBox ID="LastNameTextBox" runat="server" required ="true"/> </td>
         </tr>
         <tr>
+             <td>Username: </td>
+             <td>  <asp:TextBox ID="UsernameTextBox" runat="server" required ="true"/> </td>
+        </tr>
+        <tr>
              <td>Address: </td>
              <td>  <asp:TextBox ID="AddressTextBox" runat="server" required ="true" /> </td>
         </tr>

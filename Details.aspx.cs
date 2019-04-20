@@ -41,18 +41,45 @@ public partial class Details : System.Web.UI.Page
         Item orderedItem = retrievedItem;
         orderedItem.Quantity = Convert.ToInt32(QuantityTextBox.Text);
         List<Item> cart;
-        if (Session["Cart"] != null)
+        List<int> cartItemIds = new List<int>();
+
+        if (Session["CurrentAccount"] != null)
         {
-            cart = (List<Item>)Session["Cart"];
-            cart.Add(orderedItem);
+            if (Session["Cart"] != null)
+            {
+                cart = (List<Item>)Session["Cart"];
+
+                foreach (Item item in cart)
+                {
+                    cartItemIds.Add(item.Id);
+                }
+
+                if (cartItemIds.Contains(orderedItem.Id))
+                {
+                    int itemIndex = cart.FindIndex(p => p.Id == orderedItem.Id);
+                    Item temp = cart[itemIndex];
+                    temp.Quantity += orderedItem.Quantity;
+                }
+                else
+                {
+                    cart.Add(orderedItem);
+                }
+
+            }
+            else
+            {
+                cart = new List<Item>();
+                cart.Add(orderedItem);
+            }
+
+            Session["Cart"] = cart;
+            Response.Write("<script>alert('Item has been added to cart!');</script>");
         }
         else
         {
-            cart = new List<Item>();
-            cart.Add(orderedItem);
+            Response.Write("<script>alert('You need to be logged in to add items to cart!');</script>");
+            Response.Redirect("Login.aspx");
         }
-        Session["Cart"] = cart;
-        Response.Write("<script>alert('Item has been added to cart!');</script>");
-        Response.Redirect("Purchase.aspx");
+    
     }
 }

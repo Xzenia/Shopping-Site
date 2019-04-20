@@ -11,7 +11,7 @@ public class TransactionController
         command.Parameters.AddWithValue("@Date", DateTime.Today.ToString("d"));
         command.Parameters.AddWithValue("@Time", DateTime.Now.ToString("h:mm:ss tt"));
         command.Parameters.AddWithValue("@FullName", account.FirstName + " " + account.LastName);
-        command.Parameters.AddWithValue("@MemberID", account.MemberId);
+        command.Parameters.AddWithValue("@TransactionUsername", account.Username);
         command.Parameters.AddWithValue("@ItemName", item.Name);
         command.Parameters.AddWithValue("@PricePerItem", item.PricePerItem);
         command.Parameters.AddWithValue("@Quantity", item.Quantity);
@@ -38,7 +38,7 @@ public class TransactionController
     {
         SqlCommand command = new SqlCommand("ViewTransaction", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@MemberID", username);
+        command.Parameters.AddWithValue("@TransactionUsername", username);
 
         DataTable transactionTable = new DataTable();
 

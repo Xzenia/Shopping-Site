@@ -9,9 +9,14 @@ public partial class AddItem : System.Web.UI.Page
     {
         AccountController accountController = new AccountController();
 
-        if (Session["CurrentAccountID"] != null && accountController.isAccountAdmin(Session["CurrentAccountID"].ToString()))
+        if (Session["CurrentAccount"] != null)
         {
-            isAuthorized = true;
+            Account currentAccount = (Account) Session["CurrentAccount"];
+
+            if (accountController.isAccountAdmin(currentAccount.Username))
+            {
+                isAuthorized = true;
+            }
         }
     }
 

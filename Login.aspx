@@ -4,9 +4,7 @@
         <table>
         <tr>
              <td> User ID: </td>
-             <td>  <asp:TextBox ID="UserIDTextBox" runat="server" required ="true" />
-                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="UserIDTextBox" ErrorMessage="Numbers are only allowed" ForeColor="Red" ValidationExpression="^[0-9]*$"></asp:RegularExpressionValidator>
-             </td>
+             <td>  <asp:TextBox ID="UserIDTextBox" runat="server" required ="true" /> </td>
         </tr>
         <tr>
              <td> Password: </td>

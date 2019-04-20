@@ -7,8 +7,8 @@
     <br /> 
     <table>
         <tr>
-            <td> Member ID: </td>
-            <td> <asp:Label ID="MemberIDLabel" runat="server" Text="" /> </td>
+            <td> Username: </td>
+            <td> <asp:Label ID="UsernameLabel" runat="server" Text="" /> </td>
         </tr>
         <tr>
             <td> First Name: </td>

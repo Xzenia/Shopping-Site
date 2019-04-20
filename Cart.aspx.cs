@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Cart : System.Web.UI.Page
 {
@@ -29,7 +25,8 @@ public partial class Cart : System.Web.UI.Page
         ItemController itemController = new ItemController();
         List<Item> itemList = (List<Item>)Session["Cart"];
 
-        Account account = accountController.retrieveAccountDetails(Session["CurrentAccountID"].ToString());
+        Account account = (Account)Session["CurrentAccount"];
+
         double totalCost = 0;
 
         foreach (Item item in itemList)
@@ -50,6 +47,5 @@ public partial class Cart : System.Web.UI.Page
         Session["Cart"] = null;
 
         Response.Redirect("Receipt.aspx");
-
     }
 }
