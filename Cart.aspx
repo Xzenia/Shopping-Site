@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td> 
-                         <strong> Stock Available: <%# Eval("Quantity") %> </strong>
+                         <strong> Quantity: x <%# Eval("Quantity") %> </strong>
                     </td>
                 </tr>
             </table>

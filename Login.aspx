@@ -11,11 +11,17 @@
              <td>  <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password" required = "true" /> </td>
         </tr>
         <tr>
+            <td>
+                 No account? <a href="Register.aspx">Register here!</a>
+            </td>
+        </tr>
+        <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" Text=""/> </td>
         </tr>
         <tr>
             <td> <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" Width="101px" OnClick="ConfirmButton_Click" /> </td>  
         </tr>      
     </table>
+
 </asp:Content>
 

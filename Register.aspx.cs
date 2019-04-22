@@ -22,13 +22,16 @@ public partial class Register : System.Web.UI.Page
             newAccount.Username = UsernameTextBox.Text;
             accountController.addAccount(newAccount);
             ErrorLabel.Text = "Account added! You may now shop for items in the online store!";
+
+            FirstNameTextBox.Text = "";
+            LastNameTextBox.Text = "";
+            AddressTextBox.Text = "";
+            PasswordTextBox.Text = "";
+            ConfirmPasswordTextBox.Text = "";
         }
         else
         {
             ErrorLabel.Text = "Account with that username already exists!";
         }
-
-
-       
     }
 }
