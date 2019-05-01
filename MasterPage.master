@@ -7,39 +7,64 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="images/style.css" type="text/css" />
 	<title>RedTie</title>
+    <style type="text/css">
+        .auto-style2 {
+            float: left;
+            color: #ffffff;
+            font-family: "Segoe UI";
+            font-size: 20px;
+            width: 235px;
+            text-decoration: none;
+        }
+        .auto-style3 {
+            float: left;
+            color: #ffffff;
+            font-family: "Segoe UI";
+            font-size: 20px;
+            width: 232px;
+            text-decoration: none;
+        }
+        .auto-style4 {
+            width: 233px;
+        }
+        .auto-style5 {
+            width: 254px;
+        }
+    </style>
 </head>
-<body>
+<body id="fullPage">
     <div id="page" align="center">
-		<div id="content" style="width:800px">
-			<div id="logo">
-				<div style="margin-top:70px" class="whitetitle">ASP.NET</div>
+		<div id="content" style="width:1080px; height: 957px;">
+			<div id="logo" class="auto-style5">
+				<div style="margin-top:13px" class="whitetitle">GREAT FINDS<br />
+                </div>
+                <asp:Label ID="lblWelcome0" runat="server" Font-Names="Century Gothic" Text=" For Awesome Living" ForeColor="White"></asp:Label>
+                <br />
+                <br />
+                </br>
+                <div id="menu" class="auto-style4">
+
+					<a class="auto-style3" href="Home.aspx">Home</a> </br></br>
+                    <a class="auto-style3" href ="MyTransactions.aspx">My Transactions</a></br></br>
+                    <a class="auto-style2" href="Cart.aspx">Cart</a>
+
 			</div>
-			<div id="topheader">
+			</div>
+			<div id="topheader" class="topNavBar">
 				<div align="left" class="bodytext">
 					<br />
-					<strong> Great Finds Wholesale Store </strong> <br />
-					BCS41<br />
-					2nd Semester<br />
-					SY 2018-2019<br />
+					<asp:Label ID="lblWelcome" runat="server" Font-Names="Century Gothic" Text=" &nbsp;&nbsp;&nbsp;Welcome to Great Finds Shopping Site!" ForeColor="White"></asp:Label>
+					<br />
 					
 				</div>
-				<div id="toplinks" class="smallgraytext">
-                    <asp:HyperLink ID="ProfileHyperlink" runat="server" Text ="You are not logged in." NavigateUrl="~/Login.aspx" />
-                    <br /> <br />
-                   
-                     <asp:HyperLink ID="AdminCornerLink" runat="server" NavigateUrl="~/AdminPage.aspx" Text="Admin's Corner" />
+				<div id="toplinks" class="smallwhitetext">
+                    <asp:HyperLink ID="ProfileHyperlink" runat="server" Text ="You are not logged in. |" NavigateUrl="~/Login.aspx" />
+                    &nbsp;<asp:HyperLink ID="AdminCornerLink" runat="server" NavigateUrl="~/AdminPage.aspx" Text="Admin's Corner" />
 				</div>
 			</div>
-			<div id="menu">
-				<div align="right" class="smallwhitetext" style="padding:9px;">
-					<a href="Home.aspx">Home</a> | <a href ="MyTransactions.aspx">My Transactions</a> | <a href="Cart.aspx">Cart</a>
-				</div>
-			</div>
+
 			
             <div id="contenttext">
-                <div style="padding:10px">
-                    <span class="titletext">Great Finds Wholesale Store</span>
-                </div>
                 <div class="bodytext" style="padding:12px;" align="justify">
                     <strong>
                     </strong>
@@ -56,19 +81,8 @@
                     
      </div>
          </div>
-			<div id="leftpanel">
-				<div align="justify" class="graypanel">
-					<center> 
-                        <span class="smalltitle">Coffee Grand Sale!</span> 
-                        <br /> <br />
-                        <span class="smalltitle">April 16 - 22</span>
-                    
-					
-				</div>
-			</div>
 			<div id="footer" class="smallgraytext">
-				Prepared By: Aaron Miguel N. Herbosa
-			</div>
+				(c) 2019 Herbosa (Code), Bancud (Design)</div>
 		</div>
 	</div>
 </body>

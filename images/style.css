@@ -1,5 +1,5 @@
 /* CSS Document */
-
+/*https://coolors.co/042a2b-269fe0-ed2f2f-ff723a-ffc935*/
 /*PAGE LAYOUT*/
 body {
 	margin-left: 0px;
@@ -7,14 +7,50 @@ body {
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-#logo{float:left; background-image:url(tie_logo.gif); width:274px; height:213px;}
-#topheader{float:right; width:526px; height:97px; background-color:#F0F0F0; position:relative}
-#toplinks{position:absolute; right:10px; top:10px;}
-#menu{float:right; width:526px; height:32px; background-image:url(bg_menu.gif); background-repeat:repeat-x;}
+#fullPage{
+
+        background-color: #042a2b;
+}
+#logo{float:left; width:274px; height:900px;}
+#title {
+    color:#ffffff;
+}
+#topheader{float:right; width:805px; 
+height:35px; 
+ background-color:  #269fe0; position:relative;
+    top: 0px;
+    left: 0px;
+}
+#toplinks{position:absolute; right:11px; 
+top:12px;
+    width: 307px;
+}
+#menu{
+float:left; width:267px; 
+height:122px; 
+background-color:#454545;
+background-repeat:repeat-x;
+margin-left: 8px;
+}
+.menuItem{
+float:left; 
+color:#ffffff;
+font-family:"Segoe UI";
+font-size:20px;
+    width: 135px;
+    text-decoration:none;
+}
 #submenu{float:right; width:526px; height:32px; background-image:url(bg_submenu.gif); background-position:top; background-repeat:repeat-x;}
-#contenttext{float:right; width:526px;}
+#contenttext{
+    background-color: #454545;
+    float:left; width:804px;
+    margin-left: 0px;
+    height: 866px;
+}
 #leftpanel{float:left; width:274px;}
-#footer{float:left; width:800px; background-color:#F0F0F0; padding:10px;}
+#footer{float:left; width:1058px; 
+background-color:#ed2f2f; padding:10px;
+}
 
 /*GRAY PANEL*/
 .graypanel{
@@ -37,7 +73,7 @@ body {
 	font: 0.7em Tahoma, sans-serif;
 	font-size:36px;
 	font-weight:bold;
-	color:#FFFFFF;
+	color:#ffffff;
 }
 .smalltitle {
 	font: 0.7em Tahoma, sans-serif;
@@ -65,7 +101,7 @@ body {
 	font: 0.7em Tahoma, sans-serif;
 	font-size: 11px;
 	font-weight:bold;
-	color:#999999;
+	color:#ffffff;
 }
 .smallgraytext a{
 	font: 0.7em Tahoma, sans-serif;
