@@ -20,20 +20,43 @@ public partial class Details : System.Web.UI.Page
             int itemId = Convert.ToInt32(Request.QueryString["id"]);
             retrievedItem = itemController.retrieveItem(itemId);
 
-            ProductNameLabel.Text = retrievedItem.Name;
-            ProductPriceLabel.Text = "Price Per Item: "+retrievedItem.PricePerItem.ToString();
-            ProductStockLabel.Text = "Stock available: "+retrievedItem.Quantity.ToString();
-            ProductImage.ImageUrl = retrievedItem.ProductImagePath;
+            if (retrievedItem.Name != "")
+            {
+                ProductNameLabel.Text = retrievedItem.Name;
+                ProductPriceLabel.Text = "Price Per Item: " + retrievedItem.PricePerItem.ToString();
+                ProductStockLabel.Text = "Stock available: " + retrievedItem.Quantity.ToString();
+                ProductImage.ImageUrl = retrievedItem.ProductImagePath;
+            }
+            else
+            {
+                ErrorLabel.ForeColor = System.Drawing.Color.Red;
+                ErrorLabel.Text = "Item link is invalid!";
+
+                hideAllContents();
+            }
+
         }
         else
         {
-            Response.Write("<script>alert('Hello! Enter an integer as the id next time!');</script>");
-            AddToCartButton.Visible = false;
-            ProductNameLabel.Visible = false;
-            ProductPriceLabel.Visible = false;
-            ProductStockLabel.Visible = false;
-            QuantityTextBox.Visible = false;
+            ErrorLabel.ForeColor = System.Drawing.Color.Red;
+            ErrorLabel.Text = "Item link is invalid!";
+
+            hideAllContents();
         }
+    }
+
+    private void hideAllContents()
+    {
+        ProductImage.Visible = false;
+        ProductNameLabel.Visible = false;
+        ProductPriceLabel.Visible = false;
+        ProductStockLabel.Visible = false;
+        QuantityLabel.Visible = false;
+        AddToCartButton.Visible = false;
+        ProductNameLabel.Visible = false;
+        ProductPriceLabel.Visible = false;
+        ProductStockLabel.Visible = false;
+        QuantityTextBox.Visible = false;
     }
 
     protected void AddToCartButton_Click(object sender, ImageClickEventArgs e)
@@ -79,7 +102,6 @@ public partial class Details : System.Web.UI.Page
         else
         {
             Response.Write("<script>alert('You need to be logged in to add items to cart!');</script>");
-            Response.Redirect("Login.aspx");
         }
     
     }

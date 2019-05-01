@@ -24,8 +24,7 @@
 					
 				</div>
 				<div id="toplinks" class="smallgraytext">
-                    <asp:HyperLink ID="ProfileHyperlink" runat="server" Text ="You are not logged in. |" NavigateUrl="~/Login.aspx" />
-                    <asp:LinkButton  ID="LogoutLinkButton" runat="server" Text ="Log out" OnClick="LogoutLinkButton_Click"/>
+                    <asp:HyperLink ID="ProfileHyperlink" runat="server" Text ="You are not logged in." NavigateUrl="~/Login.aspx" />
                     <br /> <br />
                    
                      <asp:HyperLink ID="AdminCornerLink" runat="server" NavigateUrl="~/AdminPage.aspx" Text="Admin's Corner" />

@@ -33,7 +33,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Quantity: <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" />
+                                <asp:Label id ="QuantityLabel" runat="server" Text="Quantity: " /> <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" />
                                 <td><asp:RangeValidator ID="RangeValidator1" runat="server" ForeColor="Red" ErrorMessage="Only numbers from 1-999 are allowed." ControlToValidate="QuantityTextBox" Display="Dynamic" MaximumValue="999" MinimumValue="1"></asp:RangeValidator>
                             </td>
                         </tr>
@@ -41,8 +41,9 @@
             </td>
         </tr>
     </table>
-    
     <br /> 
+    <asp:Label ID="ErrorLabel" runat="server" Text="" />
+    <br />
     <asp:ImageButton ID="AddToCartButton" runat="server" ImageUrl="~/images/AddToCart.png" OnClick="AddToCartButton_Click" />
 </asp:Content>
 
