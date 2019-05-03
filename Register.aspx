@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <table>
+      <table class="control" runat="server">
         <tr>
             <td>First Name: </td>
             <td>  <asp:TextBox ID="FirstNameTextBox" runat="server" required ="true" /> </td>
@@ -38,7 +38,7 @@
             <td> <asp:Label ID="ErrorLabel" runat="server" Text=""/> </td>
         </tr>
         <tr>
-            <td> <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" Width="101px" OnClick="ConfirmButton_Click" /> </td>  
+            <td> <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" Width="157px" OnClick="ConfirmButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White"  /> </td>  
         </tr>
     </table>
 </asp:Content>

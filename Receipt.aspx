@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Receipt.aspx.cs" Inherits="Receipt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Table ID="OrderTable" runat="server">
+    <asp:Table ID="OrderTable" runat="server" class="control">
         <asp:TableRow>
             <asp:TableCell> Item Name</asp:TableCell>
             <asp:TableCell> Price </asp:TableCell>

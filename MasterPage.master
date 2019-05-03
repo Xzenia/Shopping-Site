@@ -30,6 +30,14 @@
         .auto-style5 {
             width: 254px;
         }
+        .auto-style6 {
+            left: 0px;
+            top: 0px;
+            width: 824px;
+        }
+        .auto-style7 {
+            width: 763px;
+        }
     </style>
 </head>
 <body id="fullPage">
@@ -50,7 +58,7 @@
 
 			</div>
 			</div>
-			<div id="topheader" class="topNavBar">
+			<div id="topheader" class="auto-style6">
 				<div align="left" class="bodytext">
 					<br />
 					<asp:Label ID="lblWelcome" runat="server" Font-Names="Century Gothic" Text=" &nbsp;&nbsp;&nbsp;Welcome to Great Finds Shopping Site!" ForeColor="White"></asp:Label>
@@ -64,7 +72,7 @@
 			</div>
 
 			
-            <div id="contenttext">
+            <div id="contenttext" class="auto-style7">
                 <div class="bodytext" style="padding:12px;" align="justify">
                     <strong>
                     </strong>

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Details.aspx.cs" Inherits="Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <table>
+    <table class="control">
         <tr>
             <td>
                 <asp:Image ID="ProductImage" runat="server" Height ="200" Width="300"/>
@@ -41,9 +41,9 @@
             </td>
         </tr>
     </table>
-    <br /> 
+    <br /> <center>
     <asp:Label ID="ErrorLabel" runat="server" Text="" />
     <br />
-    <asp:ImageButton ID="AddToCartButton" runat="server" ImageUrl="~/images/AddToCart.png" OnClick="AddToCartButton_Click" />
+    <asp:ImageButton ID="AddToCartButton" runat="server" ImageUrl="~/images/AddToCart.png" OnClick="AddToCartButton_Click" /></center>
 </asp:Content>
 

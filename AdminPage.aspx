@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AdminPage.aspx.cs" Inherits="AdminPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    
+    <div class="control">
     <a href="Transactions.aspx">Transactions</a> &nbsp &nbsp <a href="AddItem.aspx">Add New Item</a>
     <br /> <br />
     
@@ -27,7 +27,7 @@
         </tr>
 
         <tr>
-            <td> Item Image:  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" /> </td>
+            <td> Item Image:  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black"  /> </td>
         </tr>
 
         <tr>
@@ -35,10 +35,11 @@
        
         </tr>
         <tr>
-            <td> <asp:Button ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" /> </td>
-            <td> <asp:Button ID="DeleteButton" runat="server" Text="Delete" OnClick="DeleteButton_Click" /> </td>
+            <td> <asp:Button ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="74px"  /> </td>
+            <td> <asp:Button ID="DeleteButton" runat="server" Text="Delete" OnClick="DeleteButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="73px"  /> </td>
         </tr>
     </table>
+        </div>
 </asp:Content>
 
 

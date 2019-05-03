@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AddItem.aspx.cs" Inherits="AddItem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2> Add new item </h2>
+    <div class="control">
+    <h2> Add New Item</h2>
     <a href="AdminPage.aspx">Back to Admin Page</a>
     <br /> <br />
     <table>
@@ -16,15 +17,16 @@
             <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" required="true"/> </td>
         </tr>
         <tr>
-            <td> Item Image(s):  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" /> </td>
+            <td> Item Image(s):  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black"  /> </td>
         </tr>
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" /> </td>
             
         </tr>
         <tr>
-            <td> <asp:Button ID="AddButton" runat="server" Text="Add Item" OnClick="AddButton_Click"  /> </td>
+            <td> <asp:Button ID="AddButton" runat="server" Text="Add Item" OnClick="AddButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White"  /> </td>
         </tr>
     </table>
+        </div>
 </asp:Content>
 

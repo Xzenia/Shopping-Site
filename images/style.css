@@ -13,7 +13,7 @@ body {
 }
 #logo{float:left; width:274px; height:900px;}
 #title {
-    color:#ffffff;
+    color:#fffffff;
 }
 #topheader{float:right; width:805px; 
 height:35px; 
@@ -24,6 +24,12 @@ height:35px;
 #toplinks{position:absolute; right:11px; 
 top:12px;
     width: 307px;
+}
+.control {
+    font-family: "Segoe UI";
+    border-radius: 25px;
+    color: #ffffff;
+    background-color: #454545;
 }
 #menu{
 float:left; width:267px; 
@@ -37,9 +43,18 @@ float:left;
 color:#ffffff;
 font-family:"Segoe UI";
 font-size:20px;
-    width: 135px;
-    text-decoration:none;
+width: 135px;
+text-decoration:none;
 }
+    .menuItem:hover {
+        float: left;
+        background-color: #269fe0;
+        color: #ffffff;
+        font-family: "Segoe UI";
+        font-size: 22px;
+        width: 135px;
+        text-decoration: none;
+    }
 #submenu{float:right; width:526px; height:32px; background-image:url(bg_submenu.gif); background-position:top; background-repeat:repeat-x;}
 #contenttext{
     background-color: #454545;
@@ -128,4 +143,7 @@ background-color:#ed2f2f; padding:10px;
 }
 .smallredtext a:hover{
 	text-decoration:underline;
+}
+.button:hover {
+    background-color: #ed2f2f;
 }

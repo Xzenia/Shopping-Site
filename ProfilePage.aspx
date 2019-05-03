@@ -1,11 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProfilePage.aspx.cs" Inherits="ProfilePage" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h1> Account Details </h1>
+<asp:Content class="control" ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <h1 class="control"> Account Details </h1>
     <br />
     <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Text=""/>
     <br /> 
-    <table>
+    <table class="control" runat="server" style="width: 229px">
         <tr>
             <td> Username: </td>
             <td> <asp:Label ID="UsernameLabel" runat="server" Text="" /> </td>

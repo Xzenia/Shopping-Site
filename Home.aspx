@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <asp:DataList ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
+    <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
         <ItemTemplate>
             <table>
                 <tr>
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                      <td> 
-                         <asp:ImageButton ID="DetailsButton" runat="server" imageurl="~/images/detail.jpg"  PostBackUrl='<%#"Details.aspx?id="+Eval("ItemID")%>' />
+                         <asp:ImageButton ID="DetailsButton" runat="server" imageurl="~/images/detail.jpg"  PostBackUrl='<%#"Details.aspx?id="+Eval("ItemID")%>' BackColor="#FF9933" BorderStyle="None" ForeColor="White"  />
                 </tr>
             </table>
         </ItemTemplate>
