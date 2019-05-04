@@ -19,6 +19,10 @@
              <td>  <asp:TextBox ID="AddressTextBox" runat="server" required ="true" /> </td>
         </tr>
         <tr>
+            <td>Email: </td>
+             <td>  <asp:TextBox ID="EmailTextBox" runat="server" required ="true" TextMode="Email" /> </td>
+        </tr>
+        <tr>
              <td>Password: </td>
              <td>  <asp:TextBox ID="PasswordTextBox" runat="server" TextMode="Password" required ="true"/> </td>
         </tr>

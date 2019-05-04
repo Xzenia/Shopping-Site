@@ -20,5 +20,9 @@ public partial class MyTransactions : System.Web.UI.Page
             ErrorLabel.Text = "You need to be registered in order to see this feature.";
         }
 
+
+        TransactionGridView.Font.Size = 14;
     }
+
+
 }

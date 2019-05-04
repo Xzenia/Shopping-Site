@@ -12,8 +12,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if(Session["CurrentAccount"] != null)
         {
             Account loggedInAccount = (Account)Session["CurrentAccount"];
+
             ProfileHyperlink.NavigateUrl = "~/ProfilePage.aspx";
             ProfileHyperlink.Text = "Logged in as " + loggedInAccount.FirstName + " " + loggedInAccount.LastName;
+
             if (loggedInAccount.AccountType == AccountType.Admin)
             {
                 AdminCornerLink.Visible = true;
@@ -22,16 +24,20 @@ public partial class MasterPage : System.Web.UI.MasterPage
             {
                 AdminCornerLink.Visible = false;
             }
+
+            if (!loggedInAccount.IsAccountConfirmed)
+            {
+                AccountConfirmationHyperlink.Visible = true;
+            }
+            else
+            {
+                AccountConfirmationHyperlink.Visible = false;
+            }
         }
         else
         {
             AdminCornerLink.Visible = false;
-
+            AccountConfirmationHyperlink.Visible = false;
         }
-    }
-
-    protected void LogoutLinkButton_Click(object sender, EventArgs e)
-    {
-
     }
 }

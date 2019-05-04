@@ -29,6 +29,15 @@ public class Account
         get { return address; }
         set { address = value; }
     }
+
+    private string email;
+
+    public string Email
+    {
+        get { return email; }
+        set { email = value; }
+    }
+
     private string password;
 
     public string Password
@@ -43,6 +52,14 @@ public class Account
     {
         get { return accountType; }
         set { accountType = value; }
+    }
+
+    private bool isAccountConfirmed;
+
+    public bool IsAccountConfirmed
+    {
+        get { return isAccountConfirmed; }
+        set { isAccountConfirmed = value; }
     }
 }
 

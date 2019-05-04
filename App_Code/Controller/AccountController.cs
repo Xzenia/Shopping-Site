@@ -14,8 +14,11 @@ public class AccountController
         command.Parameters.AddWithValue("@FirstName", newAccount.FirstName);
         command.Parameters.AddWithValue("@LastName", newAccount.LastName);
         command.Parameters.AddWithValue("@AccountAddress", newAccount.Address);
+        command.Parameters.AddWithValue("@EmailAddress", newAccount.Email);
         command.Parameters.AddWithValue("@Password", newAccount.Password);
         command.Parameters.AddWithValue("@AccountType", newAccount.AccountType);
+        command.Parameters.AddWithValue("@IsEmailConfirmed", 0);
+
         ConstantVariables.connect.Open();
         command.ExecuteNonQuery();
         ConstantVariables.connect.Close();
@@ -58,8 +61,18 @@ public class AccountController
             account.FirstName = Convert.ToString(dataReader["FirstName"]);
             account.LastName = Convert.ToString(dataReader["LastName"]);
             account.Address = Convert.ToString(dataReader["AccountAddress"]);
+            account.Email = Convert.ToString(dataReader["EmailAddress"]);
             account.Password = Convert.ToString(dataReader["Password"]);
             account.AccountType = (AccountType)dataReader["AccountType"];
+
+            if (Convert.ToInt32(dataReader["IsEmailConfirmed"]) == 1)
+            {
+                account.IsAccountConfirmed = true;
+            }
+            else
+            {
+                account.IsAccountConfirmed = false;
+            }
         }
         ConstantVariables.connect.Close();
 
@@ -77,6 +90,25 @@ public class AccountController
         {
             return false;
         }
+    }
+
+    public void updateConfirmationStatus(string username, bool isEmailConfirmed)
+    {
+        SqlCommand command = new SqlCommand("UpdateConfirmationStatus", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Username", username);
+        if (isEmailConfirmed)
+        {
+            command.Parameters.AddWithValue("@IsEmailConfirmed", 1);
+        }
+        else
+        {
+            command.Parameters.AddWithValue("@IsEmailConfirmed", 0);
+        }
+
+        ConstantVariables.connect.Open();
+        command.ExecuteNonQuery();
+        ConstantVariables.connect.Close();
     }
 
     public bool doesAccountExist(string username)

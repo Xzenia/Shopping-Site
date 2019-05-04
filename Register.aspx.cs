@@ -14,6 +14,7 @@ public partial class Register : System.Web.UI.Page
         newAccount.FirstName = FirstNameTextBox.Text;
         newAccount.LastName = LastNameTextBox.Text;
         newAccount.Address = AddressTextBox.Text;
+        newAccount.Email = EmailTextBox.Text;
         newAccount.AccountType = AccountType.Member;
         newAccount.Password = PasswordTextBox.Text;
 
@@ -21,13 +22,9 @@ public partial class Register : System.Web.UI.Page
         {
             newAccount.Username = UsernameTextBox.Text;
             accountController.addAccount(newAccount);
-            ErrorLabel.Text = "Account added! You may now shop for items in the online store!";
 
-            FirstNameTextBox.Text = "";
-            LastNameTextBox.Text = "";
-            AddressTextBox.Text = "";
-            PasswordTextBox.Text = "";
-            ConfirmPasswordTextBox.Text = "";
+            Session["CurrentAccount"] = newAccount;
+            Response.Redirect("ConfirmEmail.aspx");
         }
         else
         {
