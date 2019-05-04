@@ -30,8 +30,8 @@ public partial class AdminPage : System.Web.UI.Page
         else
         {
             isAuthorized = false;
+            Response.Redirect("Home.aspx");
         }
-
     }
 
     protected void ItemGridView_SelectedIndexChanged(object sender, EventArgs e)

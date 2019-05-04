@@ -17,6 +17,16 @@ public partial class AddItem : System.Web.UI.Page
             {
                 isAuthorized = true;
             }
+            else
+            {
+                isAuthorized = false;
+                Response.Redirect("Home.aspx");
+            }
+        }
+        else
+        {
+            isAuthorized = false;
+            Response.Redirect("Home.aspx");
         }
     }
 

@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="control">
-    <a href="Transactions.aspx">Transactions</a> &nbsp &nbsp <a href="AddItem.aspx">Add New Item</a>
+    <a href="Transactions.aspx">Transactions</a> &nbsp &nbsp <a href="AddItem.aspx">Add New Item</a> &nbsp &nbsp <a href="Reports.aspx">View Reports</a>
     <br /> <br />
     
     <asp:GridView ID="ItemGridView" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="ItemGridView_SelectedIndexChanged"/>
@@ -27,19 +27,18 @@
         </tr>
 
         <tr>
-            <td> Item Image:  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black"  /> </td>
+            <td> Item Image:  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black" Height="30px" Width="209px"  /> </td>
         </tr>
 
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" /> </td>
-       
         </tr>
         <tr>
             <td> <asp:Button ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="74px"  /> </td>
             <td> <asp:Button ID="DeleteButton" runat="server" Text="Delete" OnClick="DeleteButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="73px"  /> </td>
         </tr>
     </table>
-        </div>
+   </div>
 </asp:Content>
 
 
