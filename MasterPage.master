@@ -49,14 +49,13 @@
                 <asp:Label ID="lblWelcome0" runat="server" Font-Names="Century Gothic" Text=" For Awesome Living" ForeColor="White"></asp:Label>
                 <br />
                 <br />
-                </br>
+                <br/>
                 <div id="menu" class="auto-style4">
-
-					<a class="auto-style3" href="Home.aspx">Home</a> </br></br>
-                    <a class="auto-style3" href ="MyTransactions.aspx">My Transactions</a></br></br>
-                    <a class="auto-style2" href="Cart.aspx">Cart</a>
-
-			</div>
+					<a class="auto-style3" href="Home.aspx">Home</a> <br/><br/>
+                    <a class="auto-style3" href ="MyTransactions.aspx">My Transactions</a><br/><br/>
+                    <a class="auto-style2" href="Cart.aspx">Cart</a> <br /> <br />
+                    <a class="auto-style2" id ="AdminCornerLink" runat="server" href="AdminPage.aspx">Admin's Corner</a>
+			    </div>
 			</div>
 			<div id="topheader" class="auto-style6">
 				<div align="left" class="bodytext">
@@ -69,11 +68,8 @@
                     <asp:HyperLink ID="ProfileHyperlink" runat="server" Text ="You are not logged in." NavigateUrl="~/Login.aspx" />&nbsp;
                     <asp:HyperLink ID="LogoutHyperlink" runat="server" Text="Logout" NavigateUrl="~/Login.aspx?logout=true" /> &nbsp;
                     <asp:HyperLink ID="AccountConfirmationHyperlink" runat="server" Text ="Email is not confirmed yet!" NavigateUrl="~/ConfirmEmail.aspx" />
-                    &nbsp;<asp:HyperLink ID="AdminCornerLink" runat="server" NavigateUrl="~/AdminPage.aspx" Text="Admin's Corner" />
 				</div>
 			</div>
-
-			
             <div id="contenttext" class="auto-style7">
                 <div class="bodytext" style="padding:12px;" align="justify">
                     <strong>

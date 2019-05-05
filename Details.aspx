@@ -41,9 +41,11 @@
             </td>
         </tr>
     </table>
-    <br /> <center>
-    <asp:Label ID="ErrorLabel" runat="server" Text="" />
-    <br />
-    <asp:ImageButton ID="AddToCartButton" runat="server" ImageUrl="~/images/AddToCart.png" OnClick="AddToCartButton_Click" /></center>
+    <br /> 
+    <center>
+    <asp:Label ID="ErrorLabel" runat="server" Text="" ForeColor="White" />
+    <br /><br />
+    <asp:ImageButton ID="AddToCartButton" runat="server" ImageUrl="~/images/AddToCart.png" OnClick="AddToCartButton_Click" />
+    </center>
 </asp:Content>
 

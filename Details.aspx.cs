@@ -96,13 +96,12 @@ public partial class Details : System.Web.UI.Page
             }
 
             Session["Cart"] = cart;
-            Response.Write("<script>alert('Item has been added to cart!');</script>");
-            Response.Redirect("Details.aspx?id="+ Request.QueryString["id"]);
+            ErrorLabel.Text = "Item added to cart!";
         }
         else
         {
-            Response.Write("<script>alert('You need to be logged in to add items to cart!');</script>");
+            ErrorLabel.ForeColor = System.Drawing.Color.Red;
+            ErrorLabel.Text = "You need to be logged in to add items in the cart!";
         }
-    
     }
 }
