@@ -38,6 +38,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             AdminCornerLink.Visible = false;
             AccountConfirmationHyperlink.Visible = false;
+            LogoutHyperlink.Visible = false;
         }
     }
 }

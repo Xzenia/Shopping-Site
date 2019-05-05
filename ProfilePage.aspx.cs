@@ -17,6 +17,7 @@ public partial class ProfilePage : System.Web.UI.Page
             UsernameLabel.Text = account.Username;
             FirstNameLabel.Text = account.FirstName;
             LastNameLabel.Text = account.LastName;
+            EmailAddressLabel.Text = account.Email;
             AddressLabel.Text = account.Address;
 
             if (account.AccountType == AccountType.Member)

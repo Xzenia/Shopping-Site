@@ -18,6 +18,10 @@
             <td> Last Name: </td>
             <td> <asp:Label ID="LastNameLabel" runat="server" Text="" /> </td>
         </tr>
+         <tr>
+            <td> Email: </td>
+            <td> <asp:Label ID="EmailAddressLabel" runat="server" Text="" /> </td>
+        </tr>
         <tr>
             <td> Address: </td>
             <td> <asp:Label ID="AddressLabel" runat="server" Text="" /> </td>
