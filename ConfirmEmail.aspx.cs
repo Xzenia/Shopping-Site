@@ -14,24 +14,26 @@ public partial class ConfirmEmail : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["CurrentAccount"] != null && !IsPostBack)
+        if (Session["CurrentAccount"] != null)
         {
-            Account temp = (Account)Session["CurrentAccount"];
-            Account account = accountController.retrieveAccountDetails(temp.Username);
-
-            if (!account.IsAccountConfirmed)
+            if (IsPostBack)
             {
-                sendConfirmationEmail(account.Email);
+                confirmationCode = Convert.ToInt32(Session["ConfirmationCode"]);
             }
             else
             {
-                Response.Redirect("Home.aspx");
-            }
-        }
+                Account temp = (Account)Session["CurrentAccount"];
+                Account account = accountController.retrieveAccountDetails(temp.Username);
 
-        if (IsPostBack)
-        {
-            confirmationCode = Convert.ToInt32(Session["ConfirmationCode"]);
+                if (!account.IsAccountConfirmed)
+                {
+                    sendConfirmationEmail(account.Email);
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx");
+                }
+            }
         }
     }
 
@@ -47,8 +49,8 @@ public partial class ConfirmEmail : System.Web.UI.Page
         confirmationCode = random.Next(111111, 999999);
         Session["ConfirmationCode"] = confirmationCode;
 
-        string message = "Greetings!\n\nPlease enter this six digit code into the confirmation code textbox to confirm your account and start shopping!\n\n\n" +
-        "Confirmation Code: "+confirmationCode.ToString()+"\n\n\n"+"This is an automated message. Do not reply.\n" + "- GreatFinds Team";
+        string message = "Greetings!<br/><br/>Please enter this six digit code into the confirmation code textbox to confirm your account and start shopping!<br/><br/><br/>" +
+        "Confirmation Code: <b>"+confirmationCode.ToString()+"</b> <br/><br/><br/>"+"This is an automated message. Do not reply.<br/>" + "- GreatFinds Team";
 
         mailMessage.Body = message;
         mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
