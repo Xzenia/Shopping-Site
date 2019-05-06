@@ -34,11 +34,14 @@ public partial class Cart : System.Web.UI.Page
             totalCost += item.Quantity * item.PricePerItem;
         }
 
+        Random random = new Random();
+        int transactionId = random.Next(1111111, 9999999);
+
         foreach (Item item in itemList)
         {
             Item currentItem = itemController.retrieveItem(item.Id);
             int itemStock = currentItem.Quantity - item.Quantity;
-            transactionController.addTransaction(item, account, totalCost);
+            transactionController.addTransaction(item, account, totalCost, transactionId);
             itemController.editItemStock(item.Id, itemStock);
         }
 

@@ -27,15 +27,15 @@
         </tr>
 
         <tr>
-            <td> Item Image:  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black" Height="30px" Width="209px"  /> </td>
+            <td> Item Image:  </td> <td> <asp:FileUpload class="interactable" ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black" Height="30px" Width="209px"  /> </td>
         </tr>
 
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" /> </td>
         </tr>
         <tr>
-            <td> <asp:Button ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="74px"  /> </td>
-            <td> <asp:Button ID="DeleteButton" runat="server" Text="Delete" OnClick="DeleteButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" Width="73px"  /> </td>
+            <td> <asp:Button class="interactable" ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" BorderStyle="None" ForeColor="White" Width="74px"  /> </td>
+            <td> <asp:Button class="interactable" ID="DeleteButton" runat="server" Text="Delete" OnClick="DeleteButton_Click" BorderStyle="None" ForeColor="White" Width="73px"  /> </td>
         </tr>
     </table>
    </div>

@@ -8,6 +8,21 @@ using System.Web;
 /// </summary>
 public class Transaction
 {
+    private int transactionId;
+
+    public int TransactionId
+    {
+        get
+        {
+            return transactionId;
+        }
+
+        set
+        {
+            transactionId = value;
+        }
+    }
+
     private string username;
 
     public string Username

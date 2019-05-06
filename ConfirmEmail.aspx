@@ -12,7 +12,7 @@
     <br /> 
     <asp:Label ID="ErrorLabel" runat="server" Text="" ForeColor="White" />
     <br /><br />
-    <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" Height="28px" Width="93px" OnClick="ConfirmButton_Click" />
+    <asp:Button class="interactable" ID="ConfirmButton" runat="server" Text="Confirm" Height="28px" Width="122px" OnClick="ConfirmButton_Click" />
 
 </asp:Content>
 

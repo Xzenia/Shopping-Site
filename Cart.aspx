@@ -25,7 +25,7 @@
     <br />
       <center> <asp:Label ID="ErrorLabel" runat="server" Text="" ForeColor="Red" /> </center>
     <br /> <br /> 
-    <center> <asp:Button class="button" ID="OrderItemsButton" runat="server" Text="Order Items" Height="32px" Width="220px" OnClick="OrderItemsButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White" /> </center>
+    <center> <asp:Button class="interactable" ID="OrderItemsButton" runat="server" Text="Order Items" Height="32px" Width="220px" OnClick="OrderItemsButton_Click" BorderStyle="None" ForeColor="White" /> </center>
 
 </asp:Content>
 

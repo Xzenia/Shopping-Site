@@ -6,39 +6,7 @@
 <head runat="server">
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="images/style.css" type="text/css" />
-	<title>RedTie</title>
-    <style type="text/css">
-        .auto-style2 {
-            float: left;
-            color: #ffffff;
-            font-family: "Segoe UI";
-            font-size: 20px;
-            width: 235px;
-            text-decoration: none;
-        }
-        .auto-style3 {
-            float: left;
-            color: #ffffff;
-            font-family: "Segoe UI";
-            font-size: 20px;
-            width: 232px;
-            text-decoration: none;
-        }
-        .auto-style4 {
-            width: 233px;
-        }
-        .auto-style5 {
-            width: 254px;
-        }
-        .auto-style6 {
-            left: 0px;
-            top: 0px;
-            width: 824px;
-        }
-        .auto-style7 {
-            width: 763px;
-        }
-    </style>
+	<title>Great Finds Online Store</title>
 </head>
 <body id="fullPage">
     <div id="page" align="center">
@@ -50,11 +18,11 @@
                 <br />
                 <br />
                 <br/>
-                <div id="menu" class="auto-style4">
-					<a class="auto-style3" href="Home.aspx">Home</a> <br/><br/>
-                    <a class="auto-style3" href ="MyTransactions.aspx">My Transactions</a><br/><br/>
-                    <a class="auto-style2" href="Cart.aspx">Cart</a> <br /> <br />
-                    <a class="auto-style2" id ="AdminCornerLink" runat="server" href="AdminPage.aspx">Admin's Corner</a>
+                <div id="menu" class="menu">
+					<a class="menuItem" href="Home.aspx">Home</a> <br/><br/>
+                    <a class="menuItem" href ="MyTransactions.aspx">My Transactions</a><br/><br/>
+                    <a class="menuItem" href="Cart.aspx">Cart</a> <br /> <br />
+                    <a class="menuItem" id ="AdminCornerLink" runat="server" href="AdminPage.aspx">Admin's Corner</a>
 			    </div>
 			</div>
 			<div id="topheader" class="auto-style6">

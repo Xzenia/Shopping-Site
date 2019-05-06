@@ -14,5 +14,7 @@ public partial class Home : System.Web.UI.Page
         DataSet itemDataSet = itemController.viewAllItems();
         ItemList.DataSource = itemDataSet;
         ItemList.DataBind();
+        DataList.DataSource = itemDataSet;
+        DataList.DataBind();
     }
 }

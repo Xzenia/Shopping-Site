@@ -36,13 +36,13 @@
             <td></td>
         </tr>
         <tr>
-            <td> Already have an account? <a href ="Login.aspx"> Log in!</a></td>
+            <td> Already have an account? <a class="link" href ="Login.aspx"> Log in!</a></td>
         </tr>
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" Text=""/> </td>
         </tr>
         <tr>
-            <td> <asp:Button ID="ConfirmButton" runat="server" Text="Confirm" Width="157px" OnClick="ConfirmButton_Click" BackColor="#FF9933" BorderStyle="None" ForeColor="White"  /> </td>  
+            <td> <asp:Button class="interactable" ID="ConfirmButton" runat="server" Text="Confirm" Width="157px" OnClick="ConfirmButton_Click" BorderStyle="None" ForeColor="White"  /> </td>  
         </tr>
     </table>
 </asp:Content>

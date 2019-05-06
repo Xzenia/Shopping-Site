@@ -8,12 +8,31 @@ body {
 	margin-bottom: 0px;
 }
 #fullPage{
-
         background-color: #042a2b;
+}
+textbox{
+    background-color: #666666;
+    color:#ffffff;
+}
+a{
+    color: #FF9900;
+    text-decoration:underline;
+}
+a:hover{
+    color: #ffffff;
+    text-decoration:double;
+}
+marquee{
+    font-family: "Segoe UI";
+    
+    background-color: #ed2f2f;
+}
+marquee:hover {
+    background-color: #d70909;
 }
 #logo{float:left; width:274px; height:900px;}
 #title {
-    color:#fffffff;
+    color:#ffffff;
 }
 #topheader{float:right; width:805px; 
 height:35px; 
@@ -25,36 +44,56 @@ height:35px;
 top:12px;
     width: 307px;
 }
-.control {
+#control {
+    font-family: "Segoe UI";
+    border-radius: 25px;
+    color: #cccccc;
+    margin:auto;
+
+}
+.link{
+    color: #FF9900;
+}
+.interactable{
     font-family: "Segoe UI";
     border-radius: 25px;
     color: #ffffff;
-    background-color: #454545;
+    background-color: #FF9900;
+}
+.interactable:hover {
+    background-color: #CC0000;
 }
 #menu{
 float:left; width:267px; 
 height:225px; 
-background-color:#454545;
 background-repeat:repeat-x;
 margin-left: 8px;
 }
 .menuItem{
-float:left; 
+float:left;
+width: 160px;
+border-radius:15px; /* Rounded corners on the top right and bottom right side */
+padding-left:50px;
+padding-right:50px;
+padding-top:3px;
+padding-bottom:3px;
+margin-bottom:4px;
+background-color: #269fe0;
 color:#ffffff;
 font-family:"Segoe UI";
-font-size:20px;
-width: 135px;
+font-size:18px;
 text-decoration:none;
 }
-    .menuItem:hover {
-        float: left;
-        background-color: #269fe0;
+.menuItem:hover{
+background-color: #0fc5f7;
+padding-bottom:8px;
+transition: 0.3s;
         color: #ffffff;
         font-family: "Segoe UI";
-        font-size: 22px;
-        width: 135px;
+        font-size: 20px;
         text-decoration: none;
-    }
+}
+#submenu{float:right; width:526px; height:32px; backgr}
 #submenu{float:right; width:526px; height:32px; background-image:url(bg_submenu.gif); background-position:top; background-repeat:repeat-x;}
 #contenttext{
     background-color: #454545;
@@ -75,7 +114,7 @@ background-color:#ed2f2f; padding:10px;
 /*TEXT STYLES*/
 .bodytext {
 	font: 0.7em Tahoma, sans-serif;
-	color: #666666;
+	color: #ffffff;
 }
 
 .titletext {
@@ -122,7 +161,7 @@ background-color:#ed2f2f; padding:10px;
 	font: 0.7em Tahoma, sans-serif;
 	font-size: 11px;
 	font-weight:bold;
-	color:#999999;
+	color:#ffffff;
 	text-decoration:none;
 }
 .smallgraytext a:hover{
@@ -143,7 +182,4 @@ background-color:#ed2f2f; padding:10px;
 }
 .smallredtext a:hover{
 	text-decoration:underline;
-}
-.button:hover {
-    background-color: #ed2f2f;
 }
