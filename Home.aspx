@@ -38,8 +38,9 @@
     <br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br />
-    <br /><br /><br /><br /><br /><br />
-    <marquee BEHAVIOR=ALTERNATE>  &nbsp;&nbsp;&nbsp;HOT DEALS!
+    <h1> <center> HOT DEALS! </center> </h1>
+    <marquee BEHAVIOR=ALTERNATE>
+
     <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="2" CellSpacing ="3" RepeatLayout="Table">
         <ItemTemplate>
             <table>
@@ -50,22 +51,8 @@
                 </tr>
                 <tr>
                     <td> 
-                         <strong> <%# Eval("Name") %> </strong>
+                         <center> <strong> <%# Eval("Name") %> </strong> </center>
                     </td>
-                </tr>
-                <tr>
-                    <td> 
-                         <strong> Price: <%# Eval("PricePerItem") %> </strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td> 
-                         <strong> Stock Available: <%# Eval("Stock") %> </strong>
-                    </td>
-                </tr>
-                <tr>
-                     <td> 
-                         <asp:ImageButton ID="DetailsButton" runat="server" imageurl="~/images/detail.jpg"  PostBackUrl='<%#"Details.aspx?id="+Eval("ItemID")%>' BackColor="#FF9933" BorderStyle="None" ForeColor="White"  />
                 </tr>
             </table>
         </ItemTemplate>

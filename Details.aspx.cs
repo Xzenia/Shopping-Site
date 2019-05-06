@@ -12,20 +12,22 @@ public partial class Details : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ItemController itemController = new ItemController();
-        retrievedItem = new Item();
-
-        int result;
-        if (int.TryParse(Request.QueryString["id"], out result))
+        try
         {
             int itemId = Convert.ToInt32(Request.QueryString["id"]);
             retrievedItem = itemController.retrieveItem(itemId);
 
-            if (retrievedItem.Name != "")
+            if (retrievedItem.Id != 0)
             {
                 ProductNameLabel.Text = retrievedItem.Name;
                 ProductPriceLabel.Text = "Price Per Item: " + retrievedItem.PricePerItem.ToString();
                 ProductStockLabel.Text = "Stock available: " + retrievedItem.Quantity.ToString();
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
+
+                RangeValidator.MinimumValue = "1";
+                RangeValidator.MaximumValue = retrievedItem.Quantity.ToString();
+
+                RangeValidator.ErrorMessage = "Only a value from 1 - " + retrievedItem.Quantity + " are allowed.";
             }
             else
             {
@@ -34,9 +36,8 @@ public partial class Details : System.Web.UI.Page
 
                 hideAllContents();
             }
-
         }
-        else
+        catch
         {
             ErrorLabel.ForeColor = System.Drawing.Color.Red;
             ErrorLabel.Text = "Item link is invalid!";
@@ -63,6 +64,7 @@ public partial class Details : System.Web.UI.Page
     {
         Item orderedItem = retrievedItem;
         orderedItem.Quantity = Convert.ToInt32(QuantityTextBox.Text);
+        
         List<Item> cart;
         List<int> cartItemIds = new List<int>();
 
@@ -87,7 +89,6 @@ public partial class Details : System.Web.UI.Page
                 {
                     cart.Add(orderedItem);
                 }
-
             }
             else
             {
@@ -97,6 +98,8 @@ public partial class Details : System.Web.UI.Page
 
             Session["Cart"] = cart;
             ErrorLabel.Text = "Item added to cart!";
+
+            QuantityTextBox.Text = "1";
         }
         else
         {

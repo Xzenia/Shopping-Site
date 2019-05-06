@@ -27,28 +27,58 @@ public partial class Cart : System.Web.UI.Page
 
         Account account = (Account)Session["CurrentAccount"];
 
-        double totalCost = 0;
-
-        foreach (Item item in itemList)
+        if (checkQuantity())
         {
-            totalCost += item.Quantity * item.PricePerItem;
-        }
+            double totalCost = 0;
 
-        Random random = new Random();
-        int transactionId = random.Next(1111111, 9999999);
+            foreach (Item item in itemList)
+            {
+                totalCost += item.Quantity * item.PricePerItem;
+            }
 
+            Random random = new Random();
+            int transactionId = random.Next(1111111, 9999999);
+
+            foreach (Item item in itemList)
+            {
+                Item currentItem = itemController.retrieveItem(item.Id);
+                int itemStock = currentItem.Quantity - item.Quantity;
+                transactionController.addTransaction(item, account, totalCost, transactionId);
+                itemController.editItemStock(item.Id, itemStock);
+            }
+
+            Session["OrderList"] = itemList;
+
+            Session["Cart"] = null;
+
+            Response.Redirect("Receipt.aspx");
+        }     
+    }
+
+    public bool checkQuantity()
+    {
+        ErrorLabel.Text = "";
+        ItemController itemController = new ItemController();
+        List<Item> itemList = (List<Item>)Session["Cart"];
+        int errorCounter = 0;
         foreach (Item item in itemList)
         {
             Item currentItem = itemController.retrieveItem(item.Id);
-            int itemStock = currentItem.Quantity - item.Quantity;
-            transactionController.addTransaction(item, account, totalCost, transactionId);
-            itemController.editItemStock(item.Id, itemStock);
+
+            if (item.Quantity > currentItem.Quantity)
+            {
+                ErrorLabel.Text += "You have exceeded the stock for " + item.Name;
+                errorCounter++;
+            }
         }
 
-        Session["OrderList"] = itemList;
-
-        Session["Cart"] = null;
-
-        Response.Redirect("Receipt.aspx");
+        if (errorCounter > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
