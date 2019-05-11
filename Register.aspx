@@ -42,7 +42,7 @@
             <td> <asp:Label ID="ErrorLabel" runat="server" Text=""/> </td>
         </tr>
         <tr>
-            <td> <asp:Button class="interactable" ID="ConfirmButton" runat="server" Text="Confirm" Width="157px" OnClick="ConfirmButton_Click" BorderStyle="None" ForeColor="White"  /> </td>  
+            <td> <asp:Button class="interactable" ID="ConfirmButton" runat="server" Text="Confirm" Width="157px" OnClick="ConfirmButton_Click" BorderStyle="None" ForeColor="White" /> </td>  
         </tr>
     </table>
 </asp:Content>

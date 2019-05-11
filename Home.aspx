@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <h3><marquee ID="marquee" Runat="Server">Great Coffee Sale! Up to 50% on all coffee products until May 10, 2019! Buy now while stocks last!</marquee></h3>
-    <asp:DataList class="control" ID="DataList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
+    <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
         <ItemTemplate>
             <table>
                 <tr>
@@ -41,7 +41,7 @@
     <h1> <center> HOT DEALS! </center> </h1>
     <marquee BEHAVIOR=ALTERNATE>
 
-    <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="2" CellSpacing ="3" RepeatLayout="Table">
+    <asp:DataList class="control" ID="DealsList" runat="server" RepeatColumns ="3" CellSpacing ="3" RepeatLayout="Table">
         <ItemTemplate>
             <table>
                 <tr>

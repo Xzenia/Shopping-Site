@@ -16,7 +16,7 @@ public partial class Login : System.Web.UI.Page
         AccountController accountController = new AccountController();
         bool isAccountValid = accountController.loginAccount(UserIDTextBox.Text, PasswordTextBox.Text);
 
-        if (isAccountValid)
+        if (isAccountValid && IsPostBack)
         {
             Account retrievedAccount = accountController.retrieveAccountDetails(UserIDTextBox.Text);
             Session["CurrentAccount"] = retrievedAccount;

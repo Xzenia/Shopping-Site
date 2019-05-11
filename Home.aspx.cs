@@ -10,11 +10,21 @@ public partial class Home : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        DataSet itemDataSet = new DataSet(); 
         ItemController itemController = new ItemController();
-        DataSet itemDataSet = itemController.viewAllItems();
+        try
+        {
+            itemDataSet = itemController.viewAllItems();
+        }
+        catch
+        {
+            Response.Redirect("Home.aspx");
+        }
+
+        DealsList.DataSource = itemDataSet;
+        DealsList.DataBind();
+
         ItemList.DataSource = itemDataSet;
         ItemList.DataBind();
-        DataList.DataSource = itemDataSet;
-        DataList.DataBind();
     }
 }

@@ -2,11 +2,6 @@
 
 public partial class Register : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
@@ -21,7 +16,14 @@ public partial class Register : System.Web.UI.Page
         if (!accountController.doesAccountExist(UsernameTextBox.Text))
         {
             newAccount.Username = UsernameTextBox.Text;
-            accountController.addAccount(newAccount);
+            try
+            {
+                accountController.addAccount(newAccount);
+            }
+            catch
+            {
+                ErrorLabel.Text = "An error has occurred. Please enter your details once again.";
+            }
 
             Session["CurrentAccount"] = newAccount;
             Response.Redirect("ConfirmEmail.aspx");

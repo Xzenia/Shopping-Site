@@ -20,7 +20,7 @@ public partial class AdminPage : System.Web.UI.Page
             if (accountController.isAccountAdmin(currentAccount.Username))
             {
                 isAuthorized = true;
-                refreshTable();
+                RefreshTable();
             }
             else
             {
@@ -42,7 +42,7 @@ public partial class AdminPage : System.Web.UI.Page
         StockTextBox.Text = ItemGridView.SelectedRow.Cells[3].Text.ToString();
     }
 
-    private void refreshTable()
+    private void RefreshTable()
     {
         DataSet itemDataSet = itemController.viewAllItems();
         ItemGridView.DataSource = itemDataSet;
@@ -78,8 +78,8 @@ public partial class AdminPage : System.Web.UI.Page
             }
           
             itemController.editItem(editedItem);
-            refreshTable();
-            clearFields();
+            RefreshTable();
+            ClearFields();
         }
         else
         {
@@ -93,8 +93,8 @@ public partial class AdminPage : System.Web.UI.Page
         if (isAuthorized)
         {
             itemController.deleteItem(Convert.ToInt32(ItemIDTextBox.Text));
-            refreshTable();
-            clearFields();
+            RefreshTable();
+            ClearFields();
         }
         else
         {
@@ -102,7 +102,7 @@ public partial class AdminPage : System.Web.UI.Page
         }
     }
 
-    public void clearFields()
+    private void ClearFields()
     {
         ItemIDTextBox.Text = "";
         ItemNameTextBox.Text = "";

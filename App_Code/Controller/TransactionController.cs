@@ -56,9 +56,10 @@ public class TransactionController
 
     public DataTable viewOrderedItems(string transactionId, string username)
     {
-        SqlCommand command = new SqlCommand("ViewTransaction", ConstantVariables.connect);
+        SqlCommand command = new SqlCommand("ViewOrder", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@TransactionUsername", username);
+        command.Parameters.AddWithValue("@Username", username);
+        command.Parameters.AddWithValue("@TransactionID", transactionId);
 
         DataTable transactionTable = new DataTable();
 

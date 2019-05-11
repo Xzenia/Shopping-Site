@@ -7,6 +7,7 @@ public partial class Transactions : System.Web.UI.Page
 
     private DataSet transactionDataSet;
     private bool isAuthorized;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         accountController = new AccountController();
@@ -19,7 +20,6 @@ public partial class Transactions : System.Web.UI.Page
             if (accountController.isAccountAdmin(currentAccount.Username))
             {
                 isAuthorized = true;
-
                 reloadTable();
             }
             else
@@ -30,9 +30,13 @@ public partial class Transactions : System.Web.UI.Page
         else
         {
             isAuthorized = false;
-            Response.Redirect("Home.aspx");
         }
 
+        if (!isAuthorized)
+        {
+            TransactionGridView.Visible = false;
+            Response.Redirect("Home.aspx");
+        }
     }
 
     protected void TransactionGridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,9 +55,10 @@ public partial class Transactions : System.Web.UI.Page
 
         foreach (DataRow row in orderedItems.Rows)
         {
-            orderedItemsString += row["ItemName"] + " - x" + row["Quantity"] + "\n";
+            orderedItemsString += row["ItemName"] + " - x" + row["Quantity"] + "<br/>";
         }
 
+        OrderedItemsLabel.Text = "";
         OrderedItemsLabel.Text = orderedItemsString;
     }
 

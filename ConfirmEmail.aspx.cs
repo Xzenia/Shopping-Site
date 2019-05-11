@@ -33,7 +33,7 @@ public partial class ConfirmEmail : System.Web.UI.Page
                 {
                     Response.Redirect("Home.aspx");
                 }
-            }
+            } 
         }
     }
 
@@ -49,7 +49,7 @@ public partial class ConfirmEmail : System.Web.UI.Page
         confirmationCode = random.Next(111111, 999999);
         Session["ConfirmationCode"] = confirmationCode;
 
-        string message = "Greetings!<br/><br/>Please enter this six digit code into the confirmation code textbox to confirm your account and start shopping!<br/><br/><br/>" +
+        string message = "Eureka Human!<br/><br/>Please enter this six digit code into the confirmation code textbox to confirm your awesome account and start living awesomely!<br/><br/><br/>" +
         "Confirmation Code: <b>"+confirmationCode.ToString()+"</b> <br/><br/><br/>"+"This is an automated message. Do not reply.<br/>" + "- GreatFinds Team";
 
         mailMessage.Body = message;
@@ -76,7 +76,7 @@ public partial class ConfirmEmail : System.Web.UI.Page
 
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
-        if (ConfirmationCodeTextBox.Text.Equals(confirmationCode.ToString()))
+        if (ConfirmationCodeTextBox.Text.Trim().Equals(confirmationCode.ToString()))
         {
             Account temp = (Account)Session["CurrentAccount"];
             accountController.updateConfirmationStatus(temp.Username, true);
