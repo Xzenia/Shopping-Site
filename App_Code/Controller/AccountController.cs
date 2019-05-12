@@ -45,20 +45,29 @@ public class AccountController
 
     private bool ConfirmPassword(string accountPassword, string inputPassword)
     {
-        byte[] hashBytes = Convert.FromBase64String(accountPassword);
-        byte[] salt = new byte[16];
-        Array.Copy(hashBytes, 0, salt, 0, 16);
-        var pbkdf2 = new Rfc2898DeriveBytes(inputPassword, salt, 10000);
-        byte[] hash = pbkdf2.GetBytes(20);
-
-        for (int i=0; i < 20; i++)
+        try
         {
-            if (hashBytes[i + 16] != hash[i])
+            byte[] hashBytes = Convert.FromBase64String(accountPassword);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+
+            var pbkdf2 = new Rfc2898DeriveBytes(inputPassword, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+
+            for (int i = 0; i < 20; i++)
             {
-                return false;
+                if (hashBytes[i + 16] != hash[i])
+                {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        catch
+        {
+            return false;
+        }
+
     }
 
     public bool loginAccount(string username, string password)
@@ -66,7 +75,6 @@ public class AccountController
         SqlCommand command = new SqlCommand ("AccountLogin", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@Username", username);
-        command.Parameters.AddWithValue("@Password", password);
 
         string accountUsername = "";
         string accountPassword = "";
@@ -81,6 +89,7 @@ public class AccountController
 
         if (username.Equals(accountUsername))
         {
+               
             if (ConfirmPassword(accountPassword, password))
             {
                 return true;

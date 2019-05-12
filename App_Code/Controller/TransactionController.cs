@@ -81,6 +81,5 @@ public class TransactionController
         ConstantVariables.connect.Open();
         command.ExecuteNonQuery();
         ConstantVariables.connect.Close();
-
     }
 }
