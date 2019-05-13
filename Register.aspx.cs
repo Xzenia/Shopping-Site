@@ -15,22 +15,29 @@ public partial class Register : System.Web.UI.Page
 
         if (!accountController.doesAccountExist(UsernameTextBox.Text))
         {
-            newAccount.Username = UsernameTextBox.Text;
-            try
+            if (!accountController.doesEmailExist(EmailTextBox.Text))
             {
-                accountController.addAccount(newAccount);
-            }
-            catch
-            {
-                ErrorLabel.Text = "An error has occurred. Please enter your details once again.";
-            }
+                newAccount.Username = UsernameTextBox.Text;
+                try
+                {
+                    accountController.addAccount(newAccount);
+                }
+                catch (Exception ex)
+                {
+                    ErrorLabel.Text = "An error has occurred. Do not worry, this will be resolved soon!<br/> <br/> <br/>Exception message for nerds: "+ ex.ToString();
+                }
 
-            Session["CurrentAccount"] = newAccount;
-            Response.Redirect("ConfirmEmail.aspx");
+                Session["CurrentAccount"] = newAccount;
+                Response.Redirect("ConfirmEmail.aspx");
+            }
+            else
+            {
+                ErrorLabel.Text = "The email provided is already used for an existing account!";
+            }
         }
         else
         {
-            ErrorLabel.Text = "Account with that username already exists!";
+            ErrorLabel.Text = "The username already exists!";
         }
     }
 }

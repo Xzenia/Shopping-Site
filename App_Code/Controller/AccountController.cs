@@ -89,7 +89,6 @@ public class AccountController
 
         if (username.Equals(accountUsername))
         {
-               
             if (ConfirmPassword(accountPassword, password))
             {
                 return true;
@@ -175,6 +174,26 @@ public class AccountController
         SqlCommand command = new SqlCommand("RetrieveUsernameCount", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@Username", username);
+
+        ConstantVariables.connect.Open();
+        int count = (int)command.ExecuteScalar();
+        ConstantVariables.connect.Close();
+
+        if (count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool doesEmailExist(string email)
+    {
+        SqlCommand command = new SqlCommand("RetrieveEmailCount", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Email", email);
 
         ConstantVariables.connect.Open();
         int count = (int)command.ExecuteScalar();
