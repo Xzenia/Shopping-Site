@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
         <table style="width: 328px; height: 117px" class="control">
         <tr>
              <td style="height: 23px"> User ID: </td>
-             <td style="height: 23px">  <asp:TextBox class="inputBox" ID="UserIDTextBox" runat="server" required ="true" BackColor="Silver" BorderStyle="None" /> </td>
+             <td style="height: 23px">  <asp:TextBox class="inputBox" ID="UserIDTextBox" runat="server" required ="true" BackColor="Silver" BorderStyle="None" AllowHtml="true"/> </td>
         </tr>
         <tr>
              <td style="height: 24px"> Password: </td>

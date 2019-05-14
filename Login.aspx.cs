@@ -9,12 +9,27 @@ public partial class Login : System.Web.UI.Page
         {
             Session.Clear();
         }
+
+        if (Session["CurrentAccount"] != null)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
-        bool isAccountValid = accountController.loginAccount(UserIDTextBox.Text, PasswordTextBox.Text);
+        bool isAccountValid = false;
+        
+        try
+        {
+           isAccountValid = accountController.loginAccount(UserIDTextBox.Text, PasswordTextBox.Text);
+        }
+        catch
+        {
+            ErrorLabel.Text = "An error occurred! Please enter your details and try again.";
+        }
+
 
         if (isAccountValid && IsPostBack)
         {

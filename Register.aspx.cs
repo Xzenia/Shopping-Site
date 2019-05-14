@@ -2,6 +2,14 @@
 
 public partial class Register : System.Web.UI.Page
 {
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["CurrentAccount"] != null)
+        {
+            Response.Redirect("Home.aspx");
+        }
+    }
+
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
