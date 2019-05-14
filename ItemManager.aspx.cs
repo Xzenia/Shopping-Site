@@ -56,7 +56,7 @@ public partial class ItemManager : System.Web.UI.Page
         editedItem.Name = ItemNameTextBox.Text;
         editedItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
         editedItem.Quantity = Convert.ToInt32(StockTextBox.Text);
-
+        editedItem.SalePrice = Convert.ToDouble(SalePriceTextBox.Text);
         if (isAuthorized)
         {
             if (ProductImageFileUpload.HasFile)
@@ -78,6 +78,9 @@ public partial class ItemManager : System.Web.UI.Page
             }
 
             itemController.editItem(editedItem);
+
+            itemController.updateSalePrice(editedItem.Id, editedItem.SalePrice);
+
             RefreshTable();
             ClearFields();
         }
@@ -108,5 +111,6 @@ public partial class ItemManager : System.Web.UI.Page
         ItemNameTextBox.Text = "";
         PriceTextBox.Text = "";
         StockTextBox.Text = "";
+        SalePriceTextBox.Text = "";
     }
 }

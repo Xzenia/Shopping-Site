@@ -31,22 +31,23 @@
                         <tr>
                             <td>Account ID: </td>
                             <td> <asp:TextBox ID="AccountIDTextBox" runat="server" required="true" ReadOnly="True" /> </td>
+                            <td> <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Account ID is required!" Display="Dynamic" ForeColor="Red" ControlToValidate="AccountIDTextBox" /> </td></td>
                         </tr>
                         <tr>
                             <td>Username: </td>
-                            <td> <asp:TextBox ID="UsernameTextBox" runat="server" required="true" ReadOnly="True"/> </td>
+                            <td> <asp:TextBox ID="UsernameTextBox" runat="server" ReadOnly="True" required="true" /> </td>
                         </tr>
                         <tr>
                             <td>First Name: </td>
-                            <td> <asp:TextBox ID="FirstNameTextBox" runat="server" required="true" ReadOnly="True"/> </td>
+                            <td> <asp:TextBox ID="FirstNameTextBox" runat="server" ReadOnly="True" required="true"/> </td>
                         </tr>
                         <tr>
                             <td>Last Name: </td>
-                            <td> <asp:TextBox ID="LastNameTextBox" runat="server" required="true" ReadOnly="True"/> </td>
+                            <td> <asp:TextBox ID="LastNameTextBox" runat="server" ReadOnly="True" required="true"/> </td>
                         </tr>
                         <tr>
                             <td>Address: </td>
-                            <td> <asp:TextBox ID="AddressTextBox" runat="server" required="true" ReadOnly="True"/> </td>
+                            <td> <asp:TextBox ID="AddressTextBox" runat="server" ReadOnly="True" required="true" /> </td>
                         </tr>
                 </table>
             </td>
@@ -54,11 +55,11 @@
                 <table>
                     <tr>
                         <td>Email: </td>
-                        <td> <asp:TextBox ID="EmailTextBox" runat="server" required="true" ReadOnly="True"/> </td>
+                        <td> <asp:TextBox ID="EmailTextBox" runat="server" ReadOnly="True" required="true"/> </td>
                     </tr>
                     <tr>
                         <td>Account Type: </td>
-                        <td> <asp:DropDownList ID="AccountTypeDropDownList" runat="server" Height="16px" Width="129px" >
+                        <td> <asp:DropDownList ID="AccountTypeDropDownList" runat="server" >
                             <asp:ListItem Value="1">Admin</asp:ListItem>
                             <asp:ListItem Value="2">Member</asp:ListItem>
                             </asp:DropDownList>
@@ -66,8 +67,13 @@
                     </tr>
                 </table>
             </td>
+            
         </tr>
     </table>
-       
+    <br /><br />
+    <asp:Label ID="ErrorLabel" runat="server" Text="" />
+    <br /><br /> 
+
+    <asp:Button ID="SaveChangesButton" runat="server" Text="Save Changes" OnClick="SaveChangesButton_Click" style="height: 26px" />
 </asp:Content>
 

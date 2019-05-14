@@ -9,8 +9,7 @@
     <table>
         <tr>
             <td> Item ID: </td> <td> <asp:TextBox ID="ItemIDTextBox" runat="server" ReadOnly="True"/> </td>
-            <td> 
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Item ID is required!" Display="Dynamic" ForeColor="Red" ControlToValidate="ItemIDTextBox" /> </td>
+            <td> <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Item ID is required!" ForeColor="Red" ControlToValidate="ItemIDTextBox" Display="Dynamic" /> </td>
         </tr>
         <tr>
             <td> Item Name: </td> <td> <asp:TextBox ID="ItemNameTextBox" runat="server" required="true" /> </td>
@@ -18,7 +17,12 @@
         <tr>
             <td> Price: </td> <td> <asp:TextBox ID="PriceTextBox" runat="server" required="true"/> </td>
             <td> <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="Red" ErrorMessage="Only non-negative numbers are allowed!" ControlToValidate="PriceTextBox" ValidationExpression="^[+]?\d+(\.\d+)?$"/> </td>
-            
+        </tr>
+         <tr>
+            <td> Promotional Sale Price: </td> 
+            <td> <asp:TextBox ID="SalePriceTextBox" runat="server" required="true"/> </td>
+            <td>Set to 0 if you do not want to put this item on discount!</td>
+            <td> <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ErrorMessage="Only non-negative numbers are allowed!" ControlToValidate="SalePriceTextBox" ValidationExpression="^[+]?\d+(\.\d+)?$"/> </td>
         </tr>
         <tr> 
             <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" TextMode="Number" required="true" MaxLength="4"/> </td>
@@ -31,6 +35,7 @@
 
         <tr>
             <td> <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" /> </td>
+            <td> <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" /></td>
         </tr>
         <tr>
             <td> <asp:Button class="interactable" ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateButton_Click" BorderStyle="None" ForeColor="White" Width="74px"  /> </td>

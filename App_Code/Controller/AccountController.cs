@@ -218,4 +218,16 @@ public class AccountController
         ConstantVariables.connect.Close();
         return dataSet;
     }
+
+    public void updateAccountType(string username, AccountType accountType)
+    {
+        SqlCommand command = new SqlCommand("UpdateAccountType", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Username", username);
+        command.Parameters.AddWithValue("@AccountType", accountType);
+
+        ConstantVariables.connect.Open();
+        command.ExecuteNonQuery();
+        ConstantVariables.connect.Close();
+    }
 }

@@ -59,4 +59,22 @@ public partial class AccountsManager : System.Web.UI.Page
         EmailTextBox.Text = AccountGridView.SelectedRow.Cells[6].Text;
         AccountTypeDropDownList.SelectedValue = AccountGridView.SelectedRow.Cells[8].Text;
     }
+
+    protected void SaveChangesButton_Click(object sender, EventArgs e)
+    {
+        AccountType accountType = (AccountType) Convert.ToInt32(AccountTypeDropDownList.SelectedValue);
+        AccountController.updateAccountType(UsernameTextBox.Text, accountType);
+
+        ErrorLabel.Text = "Account Type updated!";
+
+        RefreshTable();
+
+        AccountIDTextBox.Text = "";
+        UsernameTextBox.Text = "";
+        FirstNameTextBox.Text = "";
+        LastNameTextBox.Text = "";
+        AddressTextBox.Text = "";
+        EmailTextBox.Text = "";
+        AccountTypeDropDownList.SelectedValue = "";
+    }
 }

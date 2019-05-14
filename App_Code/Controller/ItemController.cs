@@ -94,4 +94,27 @@ public class ItemController
 
         return dataSet;
     }
+
+    public void updateSalePrice(int itemId, double salePrice)
+    {
+        SqlCommand command = new SqlCommand("UpdateItemSalePrice", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@ItemID", itemId);
+        command.Parameters.AddWithValue("@SalePrice", salePrice);
+
+        ConstantVariables.connect.Open();
+        command.ExecuteNonQuery();
+        ConstantVariables.connect.Close();
+    }
+
+    public DataSet viewItemsOnSale()
+    {
+        SqlDataAdapter dataAdapter = new SqlDataAdapter("RetrieveItemsOnSale", ConstantVariables.connect);
+        DataSet dataSet = new DataSet();
+
+        dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+        dataAdapter.Fill(dataSet);
+
+        return dataSet;
+    }
 }
