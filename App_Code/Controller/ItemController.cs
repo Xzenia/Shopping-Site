@@ -14,6 +14,8 @@ public class ItemController
         command.Parameters.AddWithValue("@Stock", item.Quantity);
         command.Parameters.AddWithValue("@PricePerItem", item.PricePerItem);
         command.Parameters.AddWithValue("@ProductImagePath", item.ProductImagePath);
+        command.Parameters.AddWithValue("@OnSale", 0);
+        command.Parameters.AddWithValue("@SalePrice", 0);
         ConstantVariables.connect.Open();
         command.ExecuteNonQuery();
         ConstantVariables.connect.Close();
@@ -75,7 +77,7 @@ public class ItemController
             item.Name = Convert.ToString(dataReader["Name"]);
             item.Quantity = Convert.ToInt32(dataReader["Stock"]);
             item.PricePerItem = Convert.ToDouble(dataReader["PricePerItem"]);
-
+            item.SalePrice = Convert.ToDouble(dataReader["SalePrice"]);
             item.ProductImagePath = Convert.ToString(dataReader["ProductImagePath"]);
         }
 

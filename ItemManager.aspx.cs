@@ -40,6 +40,7 @@ public partial class ItemManager : System.Web.UI.Page
         ItemNameTextBox.Text = ItemGridView.SelectedRow.Cells[2].Text.ToString();
         PriceTextBox.Text = ItemGridView.SelectedRow.Cells[4].Text.ToString();
         StockTextBox.Text = ItemGridView.SelectedRow.Cells[3].Text.ToString();
+        SalePriceTextBox.Text = ItemGridView.SelectedRow.Cells[7].Text.ToString();
     }
 
     private void RefreshTable()

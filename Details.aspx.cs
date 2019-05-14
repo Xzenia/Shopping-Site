@@ -24,6 +24,11 @@ public partial class Details : System.Web.UI.Page
                 ProductStockLabel.Text = "Stock available: " + retrievedItem.Quantity.ToString();
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
 
+                if (retrievedItem.SalePrice > 0)
+                {
+                    ProductPriceLabel.Text = "<strike>" + retrievedItem.PricePerItem.ToString() + "</strike> " + retrievedItem.SalePrice;
+                }
+
                 RangeValidator.MinimumValue = "1";
                 RangeValidator.MaximumValue = retrievedItem.Quantity.ToString();
 
@@ -67,6 +72,12 @@ public partial class Details : System.Web.UI.Page
         
         List<Item> cart;
         List<int> cartItemIds = new List<int>();
+
+
+        if (orderedItem.SalePrice > 0)
+        {
+            orderedItem.PricePerItem = orderedItem.SalePrice;
+        }
 
         if (Session["CurrentAccount"] != null)
         {
