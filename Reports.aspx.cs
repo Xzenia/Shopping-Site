@@ -20,19 +20,23 @@ public partial class Reports : System.Web.UI.Page
             if (accountController.isAccountAdmin(currentAccount.Username))
             {
                 isAuthorized = true;
-                TransactionReportViewer.Visible = true;
             }
             else
             {
                 isAuthorized = false;
-                TransactionReportViewer.Visible = false;
-                Response.Redirect("Home.aspx");
-
             }
         }
         else
         {
             isAuthorized = false;
+        }
+
+        if (isAuthorized)
+        {
+            TransactionReportViewer.Visible = true;
+        }
+        else
+        {
             TransactionReportViewer.Visible = false;
             Response.Redirect("Home.aspx");
         }

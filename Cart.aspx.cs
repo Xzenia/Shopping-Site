@@ -5,9 +5,35 @@ public partial class Cart : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Cart"] != null)
+        if (Request.QueryString["RemoveItem"] != null && Session["Cart"] != null)
         {
-            ItemList.DataSource = (List<Item>)Session["Cart"];
+            List<Item> cartContents = (List<Item>)Session["Cart"];
+            
+            int test;            
+            if (int.TryParse(Request.QueryString["RemoveItem"], out test))
+            {
+                int itemIndex = cartContents.FindIndex(p => p.Id == Convert.ToInt32(Request.QueryString["RemoveItem"]));
+                if (itemIndex >= 0)
+                {
+                    cartContents.RemoveAt(itemIndex);
+                    Session["Cart"] = cartContents;
+                }
+            }
+
+            Response.Redirect("Cart.aspx");
+
+        }
+        else if (Session["Cart"] != null)
+        {
+            List<Item> cartContents = (List<Item>)Session["Cart"];
+            
+            if (cartContents.Count <= 0)
+            {
+                ErrorLabel.Text = "Cart is empty!";
+                OrderItemsButton.Visible = false;
+            }
+
+            ItemList.DataSource = cartContents;
             ItemList.DataBind();
         }
         else
