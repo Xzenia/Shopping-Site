@@ -40,10 +40,6 @@ public partial class AddItem : System.Web.UI.Page
         newItem.Quantity = Convert.ToInt32(StockTextBox.Text);
 
         string uploadFolderPath = Server.MapPath(@"/product_images/" + newItem.Id + "-" + newItem.Name + "/");
-        string uploadFilePath = uploadFolderPath + ProductImageFileUpload.FileName;
-
-        string filePath = @"~/product_images/" + newItem.Id + "-" + newItem.Name + "/" + ProductImageFileUpload.FileName;
-
 
         if (isAuthorized)
         {
@@ -52,7 +48,18 @@ public partial class AddItem : System.Web.UI.Page
                 Directory.CreateDirectory(uploadFolderPath);
             }
 
-            ProductImageFileUpload.SaveAs(uploadFilePath);
+            string filePath;
+            if (ProductImageFileUpload.HasFile)
+            {
+                string uploadFilePath = uploadFolderPath + ProductImageFileUpload.FileName;
+                ProductImageFileUpload.SaveAs(uploadFilePath);
+
+                filePath = @"~/product_images/" + newItem.Id + "-" + newItem.Name + "/" + ProductImageFileUpload.FileName;
+            }
+            else
+            {
+                filePath = @"~/product_images/no_image.png";
+            }
 
             newItem.ProductImagePath = filePath;
 

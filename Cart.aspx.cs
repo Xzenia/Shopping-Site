@@ -21,7 +21,6 @@ public partial class Cart : System.Web.UI.Page
             }
 
             Response.Redirect("Cart.aspx");
-
         }
         else if (Session["Cart"] != null)
         {

@@ -58,16 +58,17 @@ public partial class ItemManager : System.Web.UI.Page
         editedItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
         editedItem.Quantity = Convert.ToInt32(StockTextBox.Text);
         editedItem.SalePrice = Convert.ToDouble(SalePriceTextBox.Text);
+
         if (isAuthorized)
         {
             if (ProductImageFileUpload.HasFile)
             {
-                if (!Directory.Exists(Server.MapPath("~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/")))
-                {
-                    Directory.CreateDirectory(Server.MapPath("~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/"));
-                }
-
                 string uploadFolderPath = Server.MapPath(@"~/product_images/" + editedItem.Id + "-" + editedItem.Name + "/");
+
+                if (!Directory.Exists(uploadFolderPath))
+                {
+                    Directory.CreateDirectory(uploadFolderPath);
+                }
 
                 string uploadFilePath = uploadFolderPath + ProductImageFileUpload.FileName;
 
