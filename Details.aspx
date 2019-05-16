@@ -12,7 +12,7 @@
                  <table>
                          <tr>
                             <td>
-                                <h2> <asp:Label id ="ProductNameLabel" runat="server" Text="Product Name" /> </h2>
+                                <h1> <asp:Label id ="ProductNameLabel" runat="server" Text="Product Name" /> </h1>
                             </td>
                         </tr>
                         <tr>
@@ -20,7 +20,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label id ="ProductPriceLabel" runat="server" Text="Product Price" />
+                                <h2> <asp:Label id ="ProductPriceLabel" runat="server" Text="Product Price" /> </h2>
                             </td>
                         </tr>
                         <tr>
@@ -28,7 +28,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label id ="ProductStockLabel" runat="server" Text="Product Stock" />
+                                <asp:Label id ="ProductStockLabel" runat="server" Text="Stock Available: " />
                             </td>
                         </tr>
                         <tr>

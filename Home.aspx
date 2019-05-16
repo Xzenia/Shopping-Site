@@ -27,7 +27,7 @@
     </marquee>
     <br /> <br /> <br/>
     
-       <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="50" RepeatLayout="Table">
+       <asp:DataList class="control" ID="ItemList" runat="server" RepeatColumns ="3" CellSpacing ="30" RepeatLayout="Table">
             <ItemTemplate>
                 <table>
                     <tr>
@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td> 
-                             <strong> Price: <%# Eval("PricePerItem") %> </strong>
+                             <strong> &#8369;<%# Eval("PricePerItem") %> </strong>
                         </td>
                     </tr>
                     <tr>

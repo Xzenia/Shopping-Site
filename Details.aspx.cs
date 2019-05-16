@@ -20,13 +20,13 @@ public partial class Details : System.Web.UI.Page
             if (retrievedItem.Id != 0)
             {
                 ProductNameLabel.Text = retrievedItem.Name;
-                ProductPriceLabel.Text = "Price Per Item: " + retrievedItem.PricePerItem.ToString();
-                ProductStockLabel.Text = "Stock available: " + retrievedItem.Quantity.ToString();
+                ProductPriceLabel.Text = "&#8369;" + retrievedItem.PricePerItem.ToString();
+                ProductStockLabel.Text = "Stock Available: " + retrievedItem.Quantity.ToString();
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
 
                 if (retrievedItem.SalePrice > 0)
                 {
-                    ProductPriceLabel.Text = "<strike>" + retrievedItem.PricePerItem.ToString() + "</strike> " + retrievedItem.SalePrice;
+                    ProductPriceLabel.Text = "<strike>&#8369;" + retrievedItem.PricePerItem.ToString() + "</strike>&nbsp;&#8369;" + retrievedItem.SalePrice;
                 }
 
                 RangeValidator.MinimumValue = "1";
