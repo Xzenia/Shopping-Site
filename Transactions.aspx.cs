@@ -35,7 +35,7 @@ public partial class Transactions : System.Web.UI.Page
         if (!isAuthorized)
         {
             TransactionGridView.Visible = false;
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 

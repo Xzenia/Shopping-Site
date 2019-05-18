@@ -30,7 +30,7 @@ public partial class ItemManager : System.Web.UI.Page
         else
         {
             isAuthorized = false;
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 
@@ -38,9 +38,11 @@ public partial class ItemManager : System.Web.UI.Page
     {
         ItemIDTextBox.Text = ItemGridView.SelectedRow.Cells[1].Text.ToString();
         ItemNameTextBox.Text = ItemGridView.SelectedRow.Cells[2].Text.ToString();
-        PriceTextBox.Text = ItemGridView.SelectedRow.Cells[4].Text.ToString();
         StockTextBox.Text = ItemGridView.SelectedRow.Cells[3].Text.ToString();
+        DescriptionTextBox.Text = ItemGridView.SelectedRow.Cells[4].Text.ToString();
+        PriceTextBox.Text = ItemGridView.SelectedRow.Cells[5].Text.ToString();
         SalePriceTextBox.Text = ItemGridView.SelectedRow.Cells[7].Text.ToString();
+
     }
 
     private void RefreshTable()
@@ -58,6 +60,7 @@ public partial class ItemManager : System.Web.UI.Page
         editedItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
         editedItem.Quantity = Convert.ToInt32(StockTextBox.Text);
         editedItem.SalePrice = Convert.ToDouble(SalePriceTextBox.Text);
+        editedItem.Description = Convert.ToString(DescriptionTextBox.Text);
 
         if (isAuthorized)
         {
@@ -114,5 +117,6 @@ public partial class ItemManager : System.Web.UI.Page
         PriceTextBox.Text = "";
         StockTextBox.Text = "";
         SalePriceTextBox.Text = "";
+        DescriptionTextBox.Text = "";
     }
 }

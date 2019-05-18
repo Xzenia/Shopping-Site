@@ -4,6 +4,7 @@ public class Item
     private int id;
     private string name;
     private double pricePerItem;
+    private string description;
     private int quantity;
     private string productImagePath;
     private double salePrice;
@@ -32,6 +33,12 @@ public class Item
         {
             pricePerItem = value;
         }
+    }
+
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
     }
 
     public int Quantity

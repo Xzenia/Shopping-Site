@@ -32,10 +32,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <asp:Label id ="QuantityLabel" runat="server" Text="Quantity: " /> <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" />
-                                <td><asp:RangeValidator ID="RangeValidator" runat="server" ForeColor="Red" ErrorMessage="Only numbers from 1-999 are allowed." ControlToValidate="QuantityTextBox" Display="Dynamic" Type="Integer" MinimumValue="1" MaximumValue="999"  />
+                            <td> <asp:Label id ="QuantityLabel" runat="server" Text="Quantity: " /> </td> 
+                            <td> <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" /> </td>
+                            <td> <asp:RangeValidator ID="RangeValidator" runat="server" ForeColor="Red" ErrorMessage="Only numbers from 1-999 are allowed." ControlToValidate="QuantityTextBox" Display="Dynamic" Type="Integer" MinimumValue="1" MaximumValue="999"  /> </td>
                         </tr>
+                     <tr>
+                         <td> </td>
+                     </tr>
+                     
+                     <tr>
+                         <td> </td>
+                     </tr>
+                     <tr>
+                         <td> <asp:Label id ="ProductDescriptionLabel" runat="server" Text="Quantity: " /> </td>
+                     </tr>
+
                     </table>
             </td>
         </tr>

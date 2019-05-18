@@ -20,13 +20,13 @@ public partial class AddItem : System.Web.UI.Page
             else
             {
                 isAuthorized = false;
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Index.aspx");
             }
         }
         else
         {
             isAuthorized = false;
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 
@@ -38,7 +38,7 @@ public partial class AddItem : System.Web.UI.Page
         newItem.Name = ItemNameTextBox.Text;
         newItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
         newItem.Quantity = Convert.ToInt32(StockTextBox.Text);
-
+        newItem.Description = DescriptionTextBox.Text;
         string uploadFolderPath = Server.MapPath(@"/product_images/" + newItem.Id + "-" + newItem.Name + "/");
 
         if (isAuthorized)

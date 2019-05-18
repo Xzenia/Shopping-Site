@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">    
     <asp:ScriptManager ID="ScriptManager1" runat="server"/>
-    <rsweb:ReportViewer ID="TransactionReportViewer" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="779px" Height="421px" BackColor="#F8F8F8">
+    <rsweb:ReportViewer ID="TransactionReportViewer" runat="server" Font-Names="Verdana" Font-Size="8pt" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt" Width="779px" Height="421px" BackColor="#F8F8F8" EnableTheming="False" ExportContentDisposition="AlwaysAttachment" ViewStateMode="Enabled">
         <localreport reportpath="Reports\AllTransactions.rdlc">
             <datasources>
                 <rsweb:ReportDataSource DataSourceId="AllTransactions" Name="AllTransactions" />

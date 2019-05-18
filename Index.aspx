@@ -1,4 +1,4 @@
-﻿<%@Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
+﻿<%@Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
         <h3><marquee ID="marquee" Runat="Server">Great Coffee Sale! Up to 50% on all coffee products until May 10, 2019! Buy now while stocks last!</marquee></h3>

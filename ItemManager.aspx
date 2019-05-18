@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ItemManager.aspx.cs" Inherits="ItemManager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div class="control">
+    <div class="control">
     <a href="AddItem.aspx">Add Item</a>
     <br /> <br />
     <asp:GridView ID="ItemGridView" runat="server" AutoGenerateSelectButton="True" OnSelectedIndexChanged="ItemGridView_SelectedIndexChanged"/>
@@ -23,6 +23,10 @@
             <td> <asp:TextBox ID="SalePriceTextBox" runat="server" required="true"/> </td>
             <td>Set to 0 if you do not want to put this item on discount!</td>
             <td> <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red" ErrorMessage="Only non-negative numbers are allowed!" ControlToValidate="SalePriceTextBox" ValidationExpression="^[+]?\d+(\.\d+)?$"/> </td>
+        </tr>
+       <tr>
+            <td>Item Description: </td>
+            <td> <asp:TextBox ID="DescriptionTextBox" runat="server" required="true" Height="61px" Rows="3" Width="199px" TextMode="MultiLine"/> </td>
         </tr>
         <tr> 
             <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" TextMode="Number" required="true" MaxLength="4"/> </td>

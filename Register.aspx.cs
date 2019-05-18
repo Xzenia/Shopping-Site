@@ -6,7 +6,7 @@ public partial class Register : System.Web.UI.Page
     {
         if (Session["CurrentAccount"] != null)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 

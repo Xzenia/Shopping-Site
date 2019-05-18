@@ -19,7 +19,7 @@
                 <br />
                 <br/>
                 <div id="menu" class="menu">
-					<a class="menuItem" href="Home.aspx">Home</a> <br/><br/>
+					<a class="menuItem" href="Index.aspx">Home</a> <br/><br/>
                     <a class="menuItem" href ="MyTransactions.aspx">My Transactions</a><br/><br/>
                     <a class="menuItem" href="Cart.aspx">Cart</a> <br /> <br />
                     <a class="menuItem" id ="AdminCornerLink" runat="server" href="AdminPage.aspx">Admin's Corner</a>

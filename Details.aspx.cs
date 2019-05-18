@@ -22,6 +22,16 @@ public partial class Details : System.Web.UI.Page
                 ProductNameLabel.Text = retrievedItem.Name;
                 ProductPriceLabel.Text = "&#8369;" + retrievedItem.PricePerItem.ToString();
                 ProductStockLabel.Text = "Stock Available: " + retrievedItem.Quantity.ToString();
+
+                if (retrievedItem.Description.Equals(""))
+                {
+                    ProductDescriptionLabel.Text = "No description provided about this item.";
+                }
+                else
+                {
+                    ProductDescriptionLabel.Text = retrievedItem.Description;
+                }
+
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
 
                 if (retrievedItem.SalePrice > 0)

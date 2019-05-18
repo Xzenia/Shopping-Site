@@ -38,7 +38,7 @@ public partial class Reports : System.Web.UI.Page
         else
         {
             TransactionReportViewer.Visible = false;
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 }

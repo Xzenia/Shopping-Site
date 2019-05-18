@@ -17,6 +17,10 @@
             <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" required="true"/> </td>
         </tr>
         <tr>
+            <td>Item Description: </td>
+            <td> <asp:TextBox ID="DescriptionTextBox" runat="server" required="true" Height="61px" Rows="3" Width="199px" TextMode="MultiLine"/> </td>
+        </tr>
+        <tr>
             <td> Item Image(s):  </td> <td> <asp:FileUpload ID="ProductImageFileUpload" runat="server" accept=".png,.jpg,.jpeg" BackColor="darkgray" BorderStyle="None" ForeColor="black"  /> </td>
         </tr>
         <tr>

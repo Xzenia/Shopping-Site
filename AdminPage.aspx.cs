@@ -33,7 +33,7 @@ public partial class AdminPage : System.Web.UI.Page
 
         if (!IsAuthorized)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
     }
 }

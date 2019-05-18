@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Home : System.Web.UI.Page
+public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,14 +14,15 @@ public partial class Home : System.Web.UI.Page
         DataSet itemSaleDataSet = new DataSet();
 
         ItemController itemController = new ItemController();
+
         try
         {
             itemDataSet = itemController.viewAllItems();
             itemSaleDataSet = itemController.viewItemsOnSale();
         }
-        catch
+        catch (Exception ex)
         {
-            Response.Redirect("Home.aspx");
+            ErrorLabel.Text = "An error has occurred. Do not worry, this will be resolved soon!<br/> <br/> <br/>Exception message for nerds: " + ex.ToString();
         }
 
         DealsList.DataSource = itemSaleDataSet;

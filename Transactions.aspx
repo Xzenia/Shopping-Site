@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td> Date: </td>
-                    <td> <asp:TextBox ID="DateTextBox" runat="server" required="true"/> </  td>
+                    <td> <asp:TextBox ID="DateTextBox" runat="server" required="true"/> </td>
                 </tr>
                 <tr>
                     <td> Time: </td>
