@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Transactions.aspx.cs" Inherits="Transactions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:GridView class="control" ID="TransactionGridView" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" Font-Size="8pt" OnSelectedIndexChanged="TransactionGridView_SelectedIndexChanged" />
+    <asp:GridView class="control" ID="TransactionGridView" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" Font-Size="8pt" OnSelectedIndexChanged="TransactionGridView_SelectedIndexChanged" OnPageIndexChanging="TransactionGridView_PageIndexChanging" />
     <br /> <br />
     <table>
         <tr>
@@ -39,6 +39,9 @@
                             <asp:ListItem>Completed</asp:ListItem>
                             </asp:DropDownList>
                         </td>
+                        <td>
+                            <asp:CheckBox ID="EmailUserCheckBox" runat="server" Text="Email User?" OnCheckedChanged="EmailUserCheckBox_CheckedChanged" />
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
@@ -56,7 +59,7 @@
     </table>
     <br /><br />
     <asp:Label ID="ErrorLabel" runat="server" Text="" ForeColor="Red" />
-    <br />
+    <br /><br />
     <asp:Button ID="ConfirmButton" runat="server" Text="Save Changes" OnClick="ConfirmButton_Click" />
 </asp:Content>
 

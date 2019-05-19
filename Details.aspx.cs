@@ -25,11 +25,11 @@ public partial class Details : System.Web.UI.Page
 
                 if (retrievedItem.Description.Equals(""))
                 {
-                    ProductDescriptionLabel.Text = "No description provided about this item.";
+                    ProductDescriptionLabel.Text = "Product Description: <br/><br/>No description provided about this item.";
                 }
                 else
                 {
-                    ProductDescriptionLabel.Text = retrievedItem.Description;
+                    ProductDescriptionLabel.Text = "Product Description: <br/><br/>"+retrievedItem.Description;
                 }
 
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
