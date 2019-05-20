@@ -12,12 +12,11 @@ public partial class Reports : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
+        HttpCookie sessionCookie = Request.Cookies["Session"];
 
-        if (Session["CurrentAccount"] != null)
+        if (sessionCookie.Values["username"] != null)
         {
-            Account currentAccount = (Account)Session["CurrentAccount"];
-
-            if (accountController.isAccountAdmin(currentAccount.Username))
+            if (accountController.isAccountAdmin(sessionCookie.Values["username"]))
             {
                 isAuthorized = true;
             }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Data;
+using System.Web;
 
 public partial class MyTransactions : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         TransactionController transactionController = new TransactionController();
+        HttpCookie sessionCookie = Request.Cookies["Session"];
 
-        if (Session["CurrentAccount"] != null)
+        if (sessionCookie.Values["username"] != null)
         {
-            Account account = (Account)Session["CurrentAccount"];
-            DataTable transactionDataTable = transactionController.viewTransaction(account.Username);
+            DataTable transactionDataTable = transactionController.viewTransaction(sessionCookie.Values["username"]);
 
             TransactionGridView.DataSource = transactionDataTable;
             TransactionGridView.DataBind();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Web;
 
 public partial class ItemManager : System.Web.UI.Page
 {
@@ -13,11 +14,11 @@ public partial class ItemManager : System.Web.UI.Page
         itemController = new ItemController();
         accountController = new AccountController();
 
-        if (Session["CurrentAccount"] != null)
-        {
-            Account currentAccount = (Account)Session["CurrentAccount"];
+        HttpCookie sessionCookie = Request.Cookies["Session"];
 
-            if (accountController.isAccountAdmin(currentAccount.Username))
+        if (sessionCookie.Values["username"] != null)
+        {
+            if (accountController.isAccountAdmin(sessionCookie.Values["username"]))
             {
                 isAuthorized = true;
                 RefreshTable();
@@ -41,8 +42,7 @@ public partial class ItemManager : System.Web.UI.Page
         StockTextBox.Text = ItemGridView.SelectedRow.Cells[3].Text.ToString();
         DescriptionTextBox.Text = ItemGridView.SelectedRow.Cells[4].Text.ToString();
         PriceTextBox.Text = ItemGridView.SelectedRow.Cells[5].Text.ToString();
-        SalePriceTextBox.Text = ItemGridView.SelectedRow.Cells[7].Text.ToString();
-
+        SalePriceTextBox.Text = ItemGridView.SelectedRow.Cells[8].Text.ToString();
     }
 
     private void RefreshTable()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using System.Web;
 
 public partial class AdminPage : System.Web.UI.Page
 {
@@ -13,9 +14,11 @@ public partial class AdminPage : System.Web.UI.Page
         ItemController = new ItemController();
         AccountController = new AccountController();
 
-        if (Session["CurrentAccount"] != null)
+        HttpCookie sessionCookie = Request.Cookies["Session"];
+
+        if (sessionCookie.Values["username"] != null)
         {
-            Account currentAccount = (Account)Session["CurrentAccount"];
+            Account currentAccount = AccountController.retrieveAccountDetails(sessionCookie.Values["username"]);
 
             if (AccountController.isAccountAdmin(currentAccount.Username))
             {

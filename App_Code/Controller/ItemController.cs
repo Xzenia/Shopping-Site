@@ -91,6 +91,11 @@ public class ItemController
 
     public DataSet viewAllItems()
     {
+        if (ConstantVariables.connect.State == ConnectionState.Open)
+        {
+            ConstantVariables.connect.Close();
+        }
+
         SqlDataAdapter dataAdapter = new SqlDataAdapter("ViewAllItems", ConstantVariables.connect);
         DataSet dataSet = new DataSet();
 
@@ -114,6 +119,11 @@ public class ItemController
 
     public DataSet viewItemsOnSale()
     {
+        if (ConstantVariables.connect.State == ConnectionState.Open)
+        {
+            ConstantVariables.connect.Close();
+        }
+
         SqlDataAdapter dataAdapter = new SqlDataAdapter("RetrieveItemsOnSale", ConstantVariables.connect);
         DataSet dataSet = new DataSet();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Web;
 
 public partial class AddItem : System.Web.UI.Page
 {
@@ -7,13 +8,13 @@ public partial class AddItem : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        AccountController accountController = new AccountController();
+        AccountController AccountController = new AccountController();
 
-        if (Session["CurrentAccount"] != null)
+        HttpCookie sessionCookie = Request.Cookies["Session"];
+
+        if (sessionCookie.Values["username"] != null)
         {
-            Account currentAccount = (Account) Session["CurrentAccount"];
-
-            if (accountController.isAccountAdmin(currentAccount.Username))
+            if (AccountController.isAccountAdmin(sessionCookie.Values["username"]))
             {
                 isAuthorized = true;
             }

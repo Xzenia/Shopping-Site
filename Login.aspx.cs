@@ -9,12 +9,11 @@ public partial class Login : System.Web.UI.Page
         {
             Session.Clear();
 
-            Response.Redirect("Login.aspx");
-        }
+            HttpCookie sessionCookie = new HttpCookie("Session");
+            sessionCookie.Expires = DateTime.Now.AddDays(-1d);
+            Response.Cookies.Add(sessionCookie);
 
-        if (Session["CurrentAccount"] != null)
-        {
-            Response.Redirect("Index.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 
@@ -32,16 +31,14 @@ public partial class Login : System.Web.UI.Page
             ErrorLabel.Text = "An error occurred! Please enter your details and try again.";
         }
 
-
         if (isAccountValid && IsPostBack)
         {
             Account retrievedAccount = accountController.retrieveAccountDetails(UserIDTextBox.Text);
             Session["CurrentAccount"] = retrievedAccount;
             
             HttpCookie session = new HttpCookie("Session");
-            Random random = new Random();
-            session["id"] = Convert.ToString(random.Next(11111111, 99999999));
-
+            session.Expires = DateTime.Now.AddHours(5);
+            session.Values.Add("username", retrievedAccount.Username);
             Response.AppendCookie(session);
 
             Response.Redirect("Index.aspx");

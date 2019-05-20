@@ -9,14 +9,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["CurrentAccount"] != null)
-        {
-            Account loggedInAccount = (Account)Session["CurrentAccount"];
+        HttpCookie sessionCookie = Request.Cookies["Session"];
 
+        if(sessionCookie != null && sessionCookie.Values["username"] != null)
+        {
+            AccountController accountController = new AccountController();
+            Account loggedInAccount = accountController.retrieveAccountDetails(sessionCookie.Values["username"]);
+            
             ProfileHyperlink.NavigateUrl = "~/ProfilePage.aspx";
             ProfileHyperlink.Text = "Logged in as " + loggedInAccount.FirstName + " " + loggedInAccount.LastName;
 
-            if (loggedInAccount.AccountType == AccountType.Admin)
+            if (accountController.isAccountAdmin(sessionCookie.Values["username"]))
             {
                 AdminCornerLink.Visible = true;
             }

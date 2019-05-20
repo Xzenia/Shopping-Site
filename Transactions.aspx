@@ -40,7 +40,7 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <asp:CheckBox ID="EmailUserCheckBox" runat="server" Text="Email User?" OnCheckedChanged="EmailUserCheckBox_CheckedChanged" />
+                            <asp:CheckBox ID="EmailUserCheckBox" runat="server" Text="Email User?" />
                         </td>
                     </tr>
                     <tr>
