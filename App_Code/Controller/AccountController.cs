@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Security.Cryptography;
+using System.Net.Mail;
+using System.Net;
 
 public class AccountController
 {
@@ -17,7 +19,7 @@ public class AccountController
         command.Parameters.AddWithValue("@LastName", newAccount.LastName);
         command.Parameters.AddWithValue("@AccountAddress", newAccount.Address);
         command.Parameters.AddWithValue("@EmailAddress", newAccount.Email);
-        command.Parameters.AddWithValue("@Password", ConvertNewPasswordToHash(newAccount.Password));
+        command.Parameters.AddWithValue("@Password", convertNewPasswordToHash(newAccount.Password));
         command.Parameters.AddWithValue("@AccountType", newAccount.AccountType);
         command.Parameters.AddWithValue("@IsEmailConfirmed", 0);
 
@@ -26,7 +28,25 @@ public class AccountController
         ConstantVariables.connect.Close();
     }
 
-    private string ConvertNewPasswordToHash(string password)
+    public void editAccount(Account account)
+    {
+        SqlCommand command = new SqlCommand("EditAccount", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+
+        command.Parameters.AddWithValue("@AccountID", account.Id);
+        command.Parameters.AddWithValue("@Username", account.Username);
+        command.Parameters.AddWithValue("@FirstName", account.FirstName);
+        command.Parameters.AddWithValue("@LastName", account.LastName);
+        command.Parameters.AddWithValue("@Address", account.Address);
+        command.Parameters.AddWithValue("@EmailAddress", account.Email);
+        command.Parameters.AddWithValue("@Password", account.Password);
+
+        ConstantVariables.connect.Open();
+        command.ExecuteNonQuery();
+        ConstantVariables.connect.Close();
+    }
+
+    public string convertNewPasswordToHash(string password)
     {
         byte[] salt;
         new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
@@ -43,7 +63,7 @@ public class AccountController
         return passwordHash;
     }
 
-    private bool ConfirmPassword(string accountPassword, string inputPassword)
+    public bool confirmPassword(string accountPassword, string inputPassword)
     {
         try
         {
@@ -89,7 +109,7 @@ public class AccountController
 
         if (username.Equals(accountUsername))
         {
-            if (ConfirmPassword(accountPassword, password))
+            if (confirmPassword(accountPassword, password))
             {
                 return true;
             }
@@ -104,17 +124,18 @@ public class AccountController
         }
     }
 
-    public Account retrieveAccountDetails (string username)
+    public Account retrieveAccountDetails (string id)
     {
         SqlCommand command = new SqlCommand ("RetrieveAccountDetails", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@Username", username);
+        command.Parameters.AddWithValue("@AccountId", id);
         
         ConstantVariables.connect.Open();
         SqlDataReader dataReader = command.ExecuteReader();
         Account account = new Account();
         while (dataReader.Read())
         {
+            account.Id = Convert.ToInt32(dataReader["AccountId"].ToString());
             account.Username = dataReader["Username"].ToString();
             account.FirstName = Convert.ToString(dataReader["FirstName"]);
             account.LastName = Convert.ToString(dataReader["LastName"]);
@@ -137,9 +158,30 @@ public class AccountController
         return account; 
     }
 
-    public bool isAccountAdmin(string username)
+    public string retrieveId(string username)
     {
-        Account account = retrieveAccountDetails(username);
+        SqlCommand command = new SqlCommand("RetrieveAccountId", ConstantVariables.connect);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@Username", username);
+
+        ConstantVariables.connect.Open();
+        SqlDataReader dataReader = command.ExecuteReader();
+        
+        string accountId = "";
+        
+        while (dataReader.Read())
+        {
+            accountId = dataReader["AccountId"].ToString();
+        }
+        
+        ConstantVariables.connect.Close();
+
+        return accountId; 
+    }
+
+    public bool isAccountAdmin(string id)
+    {
+        Account account = retrieveAccountDetails(id);
         if (account.AccountType == AccountType.Admin)
         {
             return true;
@@ -150,11 +192,12 @@ public class AccountController
         }
     }
 
-    public void updateConfirmationStatus(string username, bool isEmailConfirmed)
+    public void updateConfirmationStatus(string id, bool isEmailConfirmed)
     {
         SqlCommand command = new SqlCommand("UpdateConfirmationStatus", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@Username", username);
+        command.Parameters.AddWithValue("@AccountId", id);
+
         if (isEmailConfirmed)
         {
             command.Parameters.AddWithValue("@IsEmailConfirmed", 1);
@@ -229,5 +272,28 @@ public class AccountController
         ConstantVariables.connect.Open();
         command.ExecuteNonQuery();
         ConstantVariables.connect.Close();
+    }
+
+    public void sendEmail(string accountId, string emailAddress, string subject,string message)
+    {
+        Account account = retrieveAccountDetails(accountId);
+
+        MailMessage mailMessage = new MailMessage();
+        mailMessage.From = new MailAddress("greatfindsteam@gmail.com", "Great Finds Team");
+        mailMessage.To.Add(new MailAddress(emailAddress));
+
+        mailMessage.Subject = subject;
+
+        mailMessage.Body = message;
+        mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
+        mailMessage.IsBodyHtml = true;
+
+        SmtpClient smtpClient = new SmtpClient();
+        smtpClient.Host = "localhost";
+        smtpClient.Port = 25;
+        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtpClient.Credentials = new NetworkCredential("greatfindsteam@localhost", "bcs41andforever123");
+    
+        smtpClient.Send(mailMessage);
     }
 }

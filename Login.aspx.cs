@@ -5,15 +5,17 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        HttpCookie sessionCookie = Response.Cookies["Session"];
+
         if (Request.QueryString["logout"] != null && Convert.ToString(Request.QueryString["logout"]).Equals("true"))
         {
             Session.Clear();
-
-            HttpCookie sessionCookie = new HttpCookie("Session");
-            sessionCookie.Expires = DateTime.Now.AddDays(-1d);
-            Response.Cookies.Add(sessionCookie);
-
             Response.Redirect("Login.aspx");
+        }
+
+        if (sessionCookie != null && sessionCookie.Values["id"] != null)
+        {
+            Response.Redirect("Index.aspx");
         }
     }
 
@@ -33,14 +35,11 @@ public partial class Login : System.Web.UI.Page
 
         if (isAccountValid && IsPostBack)
         {
-            Account retrievedAccount = accountController.retrieveAccountDetails(UserIDTextBox.Text);
-            Session["CurrentAccount"] = retrievedAccount;
-            
-            HttpCookie session = new HttpCookie("Session");
-            session.Expires = DateTime.Now.AddHours(5);
-            session.Values.Add("username", retrievedAccount.Username);
-            Response.AppendCookie(session);
+            string accountId = accountController.retrieveId(UserIDTextBox.Text);
+            Account account = accountController.retrieveAccountDetails(accountId);
 
+            Session["CurrentAccount"] = account;
+            
             Response.Redirect("Index.aspx");
         }
         else

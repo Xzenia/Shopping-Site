@@ -3,6 +3,7 @@ using System.Data;
 using System.Web;
 using System.Net.Mail;
 using System.Net;
+
 public partial class Transactions : System.Web.UI.Page
 {
     private TransactionController transactionController;
@@ -10,6 +11,10 @@ public partial class Transactions : System.Web.UI.Page
 
     private DataSet transactionDataSet;
     private bool isAuthorized;
+
+    private string orderedItemsString;
+
+    private Account account;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,8 +24,7 @@ public partial class Transactions : System.Web.UI.Page
         if (Session["CurrentAccount"] != null)
         {
             Account currentAccount = (Account)Session["CurrentAccount"];
-
-            if (accountController.isAccountAdmin(currentAccount.Username))
+            if (accountController.isAccountAdmin(currentAccount.Id.ToString()))
             {
                 isAuthorized = true;
                 reloadTable();
@@ -40,26 +44,6 @@ public partial class Transactions : System.Web.UI.Page
             TransactionGridView.Visible = false;
             Response.Redirect("Index.aspx");
         }
-
-        if (Response.Cookies["Settings"] == null)
-        {
-            HttpCookie settingsCookie = new HttpCookie("Settings");
-            settingsCookie.Expires = DateTime.Now.AddHours(3);
-            settingsCookie["EmailUser"] = "true";
-
-            Response.AppendCookie(settingsCookie);
-        }
-        else if (Response.Cookies["Settings"]["EmailUser"] != null)
-        {
-            if (Response.Cookies["Settings"]["EmailUser"] == "false")
-            {
-                EmailUserCheckBox.Checked = false;
-            }
-            else
-            {
-                EmailUserCheckBox.Checked = true;
-            }
-        }
     }
 
     protected void TransactionGridView_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,7 +58,7 @@ public partial class Transactions : System.Web.UI.Page
 
         DataTable orderedItems = transactionController.viewOrderedItems(TransactionIDTextBox.Text, UsernameTextBox.Text);
 
-        string orderedItemsString = "";
+        orderedItemsString = "";
 
         foreach (DataRow row in orderedItems.Rows)
         {
@@ -98,68 +82,23 @@ public partial class Transactions : System.Web.UI.Page
     {
         try
         {
+            string accountId = accountController.retrieveId(TransactionGridView.SelectedRow.Cells[2].Text.ToString());
+            Account account = accountController.retrieveAccountDetails(accountId);
+
             transactionController.updateTransactionStatus(TransactionGridView.SelectedRow.Cells[1].Text.ToString(), TransactionGridView.SelectedRow.Cells[2].Text.ToString(), TransactionStatusDropDownList.SelectedValue);
             if (TransactionStatusDropDownList.SelectedValue.Equals("Delivering"))
             {
-                sendNotificationEmail(UsernameTextBox.Text, OrderedItemsLabel.Text);
+                string message = "Dear " + account.FirstName + " " + account.LastName + "<br/> <br/>We would like to inform you that your order is about to be delivered at the address you have provided <strong>(" + account.Address + ")</strong>" +
+            "<br/><br/>Your order: <br/>" + OrderedItemsLabel.Text + "<br/><br/><br/>For any further concerns, please message us through Facebook Messenger, GreatFinds Online Store.";
+
+                accountController.sendEmail(account.Id.ToString(), account.Email, "Your order is being delivered to you", message);
             }
+
             reloadTable();
-        }
-        catch
-        {
-            ErrorLabel.Text = "You must select a row before updating the transaction status!";
-        }
-    }
-
-    private void sendNotificationEmail(string username, string orderedItems)
-    {
-        Account account = accountController.retrieveAccountDetails(username);
-
-        MailMessage mailMessage = new MailMessage();
-        mailMessage.From = new MailAddress("", "GreatFinds Team");
-        mailMessage.To.Add(new MailAddress(account.Email));
-
-        mailMessage.Subject = "Your order is being delivered";
-
-
-        string message = "Dear " + account.FirstName + " " + account.LastName + "<br/> <br/>We would like to inform you that your order is about to be delivered at the address you have provided <strong>(" + account.Address + ")</strong>" +
-            "<br/><br/>Your order: <br/>" + orderedItems + "<br/><br/><br/>For any further concerns, please message us through Facebook Messenger, GreatFinds Online Store.";
-
-        mailMessage.Body = message;
-        mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-        mailMessage.IsBodyHtml = true;
-
-        SmtpClient smtpClient = new SmtpClient();
-        smtpClient.Host = "smtp.gmail.com";
-        smtpClient.Port = 587;
-        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtpClient.Credentials = new NetworkCredential("", "");
-        smtpClient.EnableSsl = true;
-
-        try
-        {
-            smtpClient.Send(mailMessage);
-            ErrorLabel.Text = "Notification email sent!";
         }
         catch (Exception ex)
         {
-            ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            ErrorLabel.Text = ex.ToString();
-        }
-    }
-
-    protected void EmailUserCheckBox_CheckedChanged(object sender, EventArgs e)
-    {
-        if (Response.Cookies["Settings"] != null)
-        {
-            if (Response.Cookies["Settings"]["EmailUser"] == "false")
-            {
-                Response.Cookies["Settings"]["EmailUser"] = "true";
-            }
-            else
-            {
-                Response.Cookies["Settings"]["EmailUser"] = "false";
-            }
+            ErrorLabel.Text = "An error has occurred. Do not worry, this will be resolved soon!<br/> <br/> <br/>Exception message for nerds: " + ex.ToString();
         }
     }
 
@@ -167,5 +106,17 @@ public partial class Transactions : System.Web.UI.Page
     {
         TransactionGridView.PageIndex = e.NewPageIndex;
         TransactionGridView.DataBind();
+    }
+
+    protected void TransactionStatusDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (TransactionStatusDropDownList.SelectedValue.Equals("Delivering"))
+        {
+            EmailUserCheckBox.Visible = true;
+        }
+        else
+        {
+            EmailUserCheckBox.Visible = false;
+        }
     }
 }

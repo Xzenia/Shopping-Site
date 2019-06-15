@@ -12,11 +12,11 @@ public partial class Reports : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie.Values["username"] != null)
+ 
+        if (Session["CurrentAccount"] != null)
         {
-            if (accountController.isAccountAdmin(sessionCookie.Values["username"]))
+            Account account = (Account) Session["CurrentAccount"];
+            if (accountController.isAccountAdmin(account.Id.ToString()))
             {
                 isAuthorized = true;
             }
@@ -39,5 +39,9 @@ public partial class Reports : System.Web.UI.Page
             TransactionReportViewer.Visible = false;
             Response.Redirect("Index.aspx");
         }
+    }
+    protected void FilterByMonthButton_Click(object sender, EventArgs e)
+    {
+
     }
 }

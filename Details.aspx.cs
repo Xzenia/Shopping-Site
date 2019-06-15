@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class Details : System.Web.UI.Page
 {
-    Item retrievedItem; 
+    Item retrievedItem;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,7 +29,7 @@ public partial class Details : System.Web.UI.Page
                 }
                 else
                 {
-                    ProductDescriptionLabel.Text = "Product Description: <br/><br/>"+retrievedItem.Description;
+                    ProductDescriptionLabel.Text = "Product Description: <br/><br/>" + retrievedItem.Description;
                 }
 
                 ProductImage.ImageUrl = retrievedItem.ProductImagePath;
@@ -79,7 +79,7 @@ public partial class Details : System.Web.UI.Page
     {
         Item orderedItem = retrievedItem;
         orderedItem.Quantity = Convert.ToInt32(QuantityTextBox.Text);
-        
+
         List<Item> cart;
         List<int> cartItemIds = new List<int>();
 

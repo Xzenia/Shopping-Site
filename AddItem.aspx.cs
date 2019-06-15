@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 using System.Web;
 
@@ -10,11 +11,11 @@ public partial class AddItem : System.Web.UI.Page
     {
         AccountController AccountController = new AccountController();
 
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie.Values["username"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            if (AccountController.isAccountAdmin(sessionCookie.Values["username"]))
+            Account currentAccount = (Account)Session["CurrentAccount"];
+
+            if (AccountController.isAccountAdmin(currentAccount.Id.ToString()))
             {
                 isAuthorized = true;
             }
@@ -71,6 +72,8 @@ public partial class AddItem : System.Web.UI.Page
             ItemNameTextBox.Text = "";
             PriceTextBox.Text = "";
             StockTextBox.Text = "";
+            DescriptionTextBox.Text = "";
+
             ProductImageFileUpload.Dispose();
         }
         else

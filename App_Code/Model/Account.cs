@@ -1,6 +1,14 @@
 ﻿
 public class Account
 {
+    private int id;
+
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
     private string username;
 
     public string Username

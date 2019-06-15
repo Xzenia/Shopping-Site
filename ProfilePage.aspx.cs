@@ -9,13 +9,10 @@ public partial class ProfilePage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie != null)
+        if (Session["CurrentAccount"] != null)
         {
             AccountController accountController = new AccountController();
-
-            Account account = accountController.retrieveAccountDetails(sessionCookie.Values["username"]);
+            Account account = (Account)Session["CurrentAccount"];
 
             UsernameLabel.Text = account.Username;
             FirstNameLabel.Text = account.FirstName;

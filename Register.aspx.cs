@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 public partial class Register : System.Web.UI.Page
 {
@@ -13,6 +14,7 @@ public partial class Register : System.Web.UI.Page
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
         AccountController accountController = new AccountController();
+        
         Account newAccount = new Account();
         newAccount.FirstName = FirstNameTextBox.Text;
         newAccount.LastName = LastNameTextBox.Text;
@@ -35,7 +37,10 @@ public partial class Register : System.Web.UI.Page
                     ErrorLabel.Text = "An error has occurred. Do not worry, this will be resolved soon!<br/> <br/> <br/>Exception message for nerds: "+ ex.ToString();
                 }
 
+                newAccount.Id = Convert.ToInt32(accountController.retrieveId(newAccount.Username));
+
                 Session["CurrentAccount"] = newAccount;
+
                 Response.Redirect("ConfirmEmail.aspx");
             }
             else

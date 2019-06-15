@@ -14,13 +14,11 @@ public partial class AdminPage : System.Web.UI.Page
         ItemController = new ItemController();
         AccountController = new AccountController();
 
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie.Values["username"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            Account currentAccount = AccountController.retrieveAccountDetails(sessionCookie.Values["username"]);
+            Account currentAccount = (Account)Session["CurrentAccount"];
 
-            if (AccountController.isAccountAdmin(currentAccount.Username))
+            if (AccountController.isAccountAdmin(currentAccount.Id.ToString()))
             {
                 IsAuthorized = true;
             }

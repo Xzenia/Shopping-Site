@@ -7,7 +7,10 @@ body {
     margin-right: 0px;
     margin-bottom: 0px;
 }
+.ContentPlaceHolder{
+        font-family: "Segoe UI";
 
+}
 #fullPage {
     background-color: #042a2b;
 }
@@ -31,10 +34,19 @@ marquee {
     font-family: "Segoe UI";
     background-color: #ed2f2f;
 }
-
+.details:hover{
+    padding:4px;
+    width:200px;
+    height:180px;
+}
     marquee:hover {
-        background-color: #d70909;
+        padding:2px;
+        background-color: #CC0000;
     }
+.gridviewFormat{
+    font-family: "Segoe UI";
+    font-size:18pt;
+}
 
 #logo {
     float: left;
@@ -60,7 +72,7 @@ marquee {
     position: absolute;
     right: 11px;
     top: 12px;
-    width: 307px;
+    width: 390px;
 }
 
 #control {
@@ -80,11 +92,29 @@ marquee {
     color: #ffffff;
     background-color: #FF9900;
 }
-
+.leftBrace {
+    font-family: "Segoe UI";
+    float: left;
+}
     .interactable:hover {
         background-color: #CC0000;
     }
 
+    .solidButton {
+    font-family: "Segoe UI";
+    padding:6px;
+    color: #ffffff;
+    background-color: #FF9900;
+    text-decoration:none;
+}
+
+    .solidButton:hover {
+        background-color: #CC0000;
+    }
+
+.pageHeader{
+        font-family: "Segoe UI";
+}
 #menu {
     float: left;
     width: 267px;
@@ -160,7 +190,7 @@ marquee {
     float: left;
     width: 804px;
     margin-left: 0px;
-    height: 866px;
+    height: 957px;
 }
 
 #leftpanel {

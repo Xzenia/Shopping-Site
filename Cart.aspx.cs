@@ -8,8 +8,8 @@ public partial class Cart : System.Web.UI.Page
         if (Request.QueryString["RemoveItem"] != null && Session["Cart"] != null)
         {
             List<Item> cartContents = (List<Item>)Session["Cart"];
-            
-            int test;            
+
+            int test;
             if (int.TryParse(Request.QueryString["RemoveItem"], out test))
             {
                 int itemIndex = cartContents.FindIndex(p => p.Id == Convert.ToInt32(Request.QueryString["RemoveItem"]));
@@ -25,7 +25,7 @@ public partial class Cart : System.Web.UI.Page
         else if (Session["Cart"] != null)
         {
             List<Item> cartContents = (List<Item>)Session["Cart"];
-            
+
             if (cartContents.Count <= 0)
             {
                 ErrorLabel.Text = "Cart is empty!";
@@ -52,32 +52,40 @@ public partial class Cart : System.Web.UI.Page
 
         Account account = (Account)Session["CurrentAccount"];
 
-        if (checkQuantity())
+        if (Session["CurrentAccount"] != null)
         {
-            double totalCost = 0;
-
-            foreach (Item item in itemList)
+            if (checkQuantity())
             {
-                totalCost += item.Quantity * item.PricePerItem;
+                double totalCost = 0;
+
+                foreach (Item item in itemList)
+                {
+                    totalCost += item.Quantity * item.PricePerItem;
+                }
+
+                Random random = new Random();
+                int transactionId = random.Next(1111111, 9999999);
+
+                foreach (Item item in itemList)
+                {
+                    Item currentItem = itemController.retrieveItem(item.Id);
+                    int itemStock = currentItem.Quantity - item.Quantity;
+                    transactionController.addTransaction(item, account, totalCost, transactionId);
+                    itemController.editItemStock(item.Id, itemStock);
+                }
+
+                Session["OrderList"] = itemList;
+
+                Session["Cart"] = null;
+
+                Response.Redirect("Receipt.aspx");
             }
+        }
+        else
+        {
+            ErrorLabel.Text = "You need to be logged in to order these items.";
+        }
 
-            Random random = new Random();
-            int transactionId = random.Next(1111111, 9999999);
-
-            foreach (Item item in itemList)
-            {
-                Item currentItem = itemController.retrieveItem(item.Id);
-                int itemStock = currentItem.Quantity - item.Quantity;
-                transactionController.addTransaction(item, account, totalCost, transactionId);
-                itemController.editItemStock(item.Id, itemStock);
-            }
-
-            Session["OrderList"] = itemList;
-
-            Session["Cart"] = null;
-
-            Response.Redirect("Receipt.aspx");
-        }     
     }
 
     public bool checkQuantity()

@@ -3,7 +3,8 @@ using System.Data;
 using System;
 using System.Drawing;
 using System.IO;
-
+using System.Data;
+using System.Data.OleDb;
 public class ItemController
 {
     public void addItem(Item item)
@@ -132,4 +133,33 @@ public class ItemController
 
         return dataSet;
     }
+
+    public DataTable ProcessExcel(string fileLocation)
+    {
+        using (OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileLocation + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1\""))
+        {
+            using (OleDbCommand comm = new OleDbCommand())
+            using (var dt = new DataTable())
+            {
+                comm.CommandText = "Select * from [Sheet1$]";
+                comm.Connection = conn;
+                using (OleDbDataAdapter da = new OleDbDataAdapter())
+                {
+                    try
+                    {
+                        conn.Open();
+                        da.SelectCommand = comm;
+                        da.Fill(dt);
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write(ex.ToString());
+                    }
+                    return dt;
+                }
+            }
+        }
+    }
+
 }

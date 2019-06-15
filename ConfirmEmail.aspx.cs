@@ -10,81 +10,52 @@ public partial class ConfirmEmail : System.Web.UI.Page
 {
     AccountController accountController = new AccountController();
 
+    Account account;
+
     int confirmationCode = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["CurrentAccount"] != null)
         {
+            account = (Account)Session["CurrentAccount"];
+
             if (IsPostBack)
             {
                 confirmationCode = Convert.ToInt32(Session["ConfirmationCode"]);
             }
             else
             {
-                Account temp = (Account)Session["CurrentAccount"];
-                Account account = accountController.retrieveAccountDetails(temp.Username);
+                Random random = new Random();
+                confirmationCode = random.Next(111111111,999999999);
+
+                Session["ConfirmationCode"] = confirmationCode;
+
+                string message = "Eureka Human!<br/><br/>Please enter this six digit code into the confirmation code textbox to confirm your account and start buying our products!<br/><br/><br/>" +
+        "Confirmation Code: <b>"+confirmationCode.ToString()+"</b> <br/><br/><br/>"+"This is an automated message. Do not reply.<br/>" + "- GreatFinds Team";
 
                 if (!account.IsAccountConfirmed)
                 {
-                    sendConfirmationEmail(account.Email);
+                    accountController.sendEmail(account.Id.ToString(), account.Email, "Confirm your email", message);
+
                 }
                 else
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("Index.aspx");
                 }
             } 
         }
     }
 
-    private void sendConfirmationEmail(string email)
-    {
-        MailMessage mailMessage = new MailMessage();
-        mailMessage.From = new MailAddress("", "GreatFinds Team");
-        mailMessage.To.Add(new MailAddress(email));
-
-        mailMessage.Subject = "Account Confirmation";
-
-        Random random = new Random();
-        confirmationCode = random.Next(111111, 999999);
-        Session["ConfirmationCode"] = confirmationCode;
-
-        string message = "Eureka Human!<br/><br/>Please enter this six digit code into the confirmation code textbox to confirm your awesome account and start living awesomely!<br/><br/><br/>" +
-        "Confirmation Code: <b>"+confirmationCode.ToString()+"</b> <br/><br/><br/>"+"This is an automated message. Do not reply.<br/>" + "- GreatFinds Team";
-
-        mailMessage.Body = message;
-        mailMessage.BodyEncoding = System.Text.Encoding.UTF8;
-        mailMessage.IsBodyHtml = true;
-
-        SmtpClient smtpClient = new SmtpClient();
-        smtpClient.Host = "smtp.gmail.com";
-        smtpClient.Port = 587;
-        smtpClient.Credentials = new NetworkCredential("", "");
-        smtpClient.EnableSsl = true;
-     
-        try
-        {
-            smtpClient.Send(mailMessage);
-
-        }
-        catch (Exception ex)
-        {
-            ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            ErrorLabel.Text = ex.ToString();
-        }
-    }
-
+ 
     protected void ConfirmButton_Click(object sender, EventArgs e)
     {
         if (ConfirmationCodeTextBox.Text.Trim().Equals(confirmationCode.ToString()))
         {
-            Account temp = (Account)Session["CurrentAccount"];
-            accountController.updateConfirmationStatus(temp.Username, true);
+            accountController.updateConfirmationStatus(account.Id.ToString(), true);
+            Session["CurrentAccount"] = accountController.retrieveAccountDetails(account.Id.ToString());
 
-            Account account = accountController.retrieveAccountDetails(temp.Username);
-            Session["CurrentAccount"] = account;
-
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Index.aspx");
         }
         else
         {

@@ -14,11 +14,10 @@ public partial class ItemManager : System.Web.UI.Page
         itemController = new ItemController();
         accountController = new AccountController();
 
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie.Values["username"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            if (accountController.isAccountAdmin(sessionCookie.Values["username"]))
+            Account account = (Account)Session["CurrentAccount"];
+            if (accountController.isAccountAdmin(account.Id.ToString()))
             {
                 isAuthorized = true;
                 RefreshTable();
@@ -100,7 +99,22 @@ public partial class ItemManager : System.Web.UI.Page
     {
         if (isAuthorized)
         {
-            itemController.deleteItem(Convert.ToInt32(ItemIDTextBox.Text));
+            Item selectedItem = itemController.retrieveItem(Convert.ToInt32(ItemIDTextBox.Text));
+            itemController.deleteItem(Convert.ToInt32(selectedItem.Id));
+
+            string uploadFolderPath = Server.MapPath(@"~/product_images/" + selectedItem.Id + "-" + selectedItem.Name + "/");
+            try
+            {
+                if (Directory.Exists(uploadFolderPath))
+                {
+                    Directory.Delete(uploadFolderPath, true);
+                }
+            }
+            catch
+            {
+                Directory.Delete(uploadFolderPath, true);
+            }
+
             RefreshTable();
             ClearFields();
         }

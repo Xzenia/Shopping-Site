@@ -7,11 +7,11 @@ public partial class MyTransactions : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         TransactionController transactionController = new TransactionController();
-        HttpCookie sessionCookie = Request.Cookies["Session"];
 
-        if (sessionCookie.Values["username"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            DataTable transactionDataTable = transactionController.viewTransaction(sessionCookie.Values["username"]);
+            Account account = (Account)Session["CurrentAccount"];
+            DataTable transactionDataTable = transactionController.viewTransaction(account.Id.ToString());
 
             TransactionGridView.DataSource = transactionDataTable;
             TransactionGridView.DataBind();

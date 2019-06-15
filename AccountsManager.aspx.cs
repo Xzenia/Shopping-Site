@@ -14,13 +14,11 @@ public partial class AccountsManager : System.Web.UI.Page
     {
         AccountController = new AccountController();
 
-        HttpCookie sessionCookie = Request.Cookies["Session"];
-
-        if (sessionCookie.Values["username"] != null)
+        if (Session["CurrentAccount"] != null)
         {
-            Account currentAccount = AccountController.retrieveAccountDetails(sessionCookie.Values["username"]);
-
-            if (AccountController.isAccountAdmin(currentAccount.Username))
+            Account currentAccount = (Account)Session["CurrentAccount"];
+ 
+            if (AccountController.isAccountAdmin(currentAccount.Id.ToString()))
             {
                 IsAuthorized = true;
             }

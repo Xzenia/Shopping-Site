@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ProfilePage.aspx.cs" Inherits="ProfilePage" %>
 
-<asp:Content class="control" ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h1 class="control"> Account Details </h1>
     <br />
     <asp:Label ID="ErrorLabel" runat="server" ForeColor="Red" Text=""/>
@@ -31,6 +31,8 @@
             <td> <asp:Label ID="AccountTypeLabel" runat="server" Text="" /> </td>
         </tr>
     </table>
+    <br />
+     <center> <a href="EditProfile.aspx" class="solidButton">Edit Details</a> </center>
 
 </asp:Content>
 

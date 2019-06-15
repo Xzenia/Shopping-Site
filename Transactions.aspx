@@ -33,7 +33,7 @@
                 <table>
                     <tr>
                         <td>Transaction Status: </td>
-                        <td> <asp:DropDownList ID="TransactionStatusDropDownList" runat="server">
+                        <td> <asp:DropDownList ID="TransactionStatusDropDownList" runat="server" OnSelectedIndexChanged="TransactionStatusDropDownList_SelectedIndexChanged">
                             <asp:ListItem>Pending</asp:ListItem>
                             <asp:ListItem>Delivering</asp:ListItem>
                             <asp:ListItem>Completed</asp:ListItem>

@@ -10,6 +10,7 @@ public class TransactionController
         command.CommandType = CommandType.StoredProcedure;
 
         command.Parameters.AddWithValue("@TransactionID",  transactionId);
+        command.Parameters.AddWithValue("@UserId", account.Id);
         command.Parameters.AddWithValue("@Date", DateTime.Today.ToString("d"));
         command.Parameters.AddWithValue("@Time", DateTime.Now.ToString("h:mm:ss tt"));
         command.Parameters.AddWithValue("@FullName", account.FirstName + " " + account.LastName);
@@ -39,11 +40,11 @@ public class TransactionController
         return dataSet;
     }
 
-    public DataTable viewTransaction(string username)
+    public DataTable viewTransaction(string userId)
     {
         SqlCommand command = new SqlCommand("ViewTransaction", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@TransactionUsername", username);
+        command.Parameters.AddWithValue("@UserId", userId);
 
         DataTable transactionTable = new DataTable();
 
