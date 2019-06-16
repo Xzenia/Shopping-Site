@@ -279,7 +279,7 @@ public class AccountController
         Account account = retrieveAccountDetails(accountId);
 
         MailMessage mailMessage = new MailMessage();
-        mailMessage.From = new MailAddress("greatfindsteam@gmail.com", "Great Finds Team");
+        mailMessage.From = new MailAddress("", "Great Finds Team");
         mailMessage.To.Add(new MailAddress(emailAddress));
 
         mailMessage.Subject = subject;
@@ -292,7 +292,7 @@ public class AccountController
         smtpClient.Host = "localhost";
         smtpClient.Port = 25;
         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtpClient.Credentials = new NetworkCredential("greatfindsteam@localhost", "bcs41andforever123");
+        smtpClient.Credentials = new NetworkCredential("", "");
     
         smtpClient.Send(mailMessage);
     }
