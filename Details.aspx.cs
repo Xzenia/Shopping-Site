@@ -17,11 +17,17 @@ public partial class Details : System.Web.UI.Page
             int itemId = Convert.ToInt32(Request.QueryString["id"]);
             retrievedItem = itemController.retrieveItem(itemId);
 
-            if (retrievedItem.Id != 0)
+            if (retrievedItem.Id == 0)
+            {
+                ErrorLabel.ForeColor = System.Drawing.Color.Red;
+                ErrorLabel.Text = "Item link is invalid!";
+
+                hideAllContents();
+            }
+            else
             {
                 ProductNameLabel.Text = retrievedItem.Name;
                 ProductPriceLabel.Text = "&#8369;" + retrievedItem.PricePerItem.ToString();
-                ProductStockLabel.Text = "Stock Available: " + retrievedItem.Quantity.ToString();
 
                 if (retrievedItem.Description.Equals(""))
                 {
@@ -38,18 +44,6 @@ public partial class Details : System.Web.UI.Page
                 {
                     ProductPriceLabel.Text = "<strike>&#8369;" + retrievedItem.PricePerItem.ToString() + "</strike>&nbsp;&#8369;" + retrievedItem.SalePrice;
                 }
-
-                RangeValidator.MinimumValue = "1";
-                RangeValidator.MaximumValue = retrievedItem.Quantity.ToString();
-
-                RangeValidator.ErrorMessage = "Only a value from 1 - " + retrievedItem.Quantity + " are allowed.";
-            }
-            else
-            {
-                ErrorLabel.ForeColor = System.Drawing.Color.Red;
-                ErrorLabel.Text = "Item link is invalid!";
-
-                hideAllContents();
             }
         }
         catch
@@ -66,12 +60,11 @@ public partial class Details : System.Web.UI.Page
         ProductImage.Visible = false;
         ProductNameLabel.Visible = false;
         ProductPriceLabel.Visible = false;
-        ProductStockLabel.Visible = false;
+        ProductDescriptionLabel.Visible = false;
         QuantityLabel.Visible = false;
         AddToCartButton.Visible = false;
         ProductNameLabel.Visible = false;
         ProductPriceLabel.Visible = false;
-        ProductStockLabel.Visible = false;
         QuantityTextBox.Visible = false;
     }
 

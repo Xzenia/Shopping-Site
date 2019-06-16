@@ -54,64 +54,32 @@ public partial class Cart : System.Web.UI.Page
 
         if (Session["CurrentAccount"] != null)
         {
-            if (checkQuantity())
+            double totalCost = 0;
+
+            foreach (Item item in itemList)
             {
-                double totalCost = 0;
-
-                foreach (Item item in itemList)
-                {
-                    totalCost += item.Quantity * item.PricePerItem;
-                }
-
-                Random random = new Random();
-                int transactionId = random.Next(1111111, 9999999);
-
-                foreach (Item item in itemList)
-                {
-                    Item currentItem = itemController.retrieveItem(item.Id);
-                    int itemStock = currentItem.Quantity - item.Quantity;
-                    transactionController.addTransaction(item, account, totalCost, transactionId);
-                    itemController.editItemStock(item.Id, itemStock);
-                }
-
-                Session["OrderList"] = itemList;
-
-                Session["Cart"] = null;
-
-                Response.Redirect("Receipt.aspx");
+                totalCost += item.Quantity * item.PricePerItem;
             }
+
+            Random random = new Random();
+            int transactionId = random.Next(1111111, 9999999);
+
+            foreach (Item item in itemList)
+            {
+                Item currentItem = itemController.retrieveItem(item.Id);
+                transactionController.addTransaction(item, account, totalCost, transactionId);
+            }
+
+            Session["OrderList"] = itemList;
+
+            Session["Cart"] = null;
+
+            Response.Redirect("Receipt.aspx");
         }
         else
         {
             ErrorLabel.Text = "You need to be logged in to order these items.";
         }
 
-    }
-
-    public bool checkQuantity()
-    {
-        ErrorLabel.Text = "";
-        ItemController itemController = new ItemController();
-        List<Item> itemList = (List<Item>)Session["Cart"];
-        int errorCounter = 0;
-        foreach (Item item in itemList)
-        {
-            Item currentItem = itemController.retrieveItem(item.Id);
-
-            if (item.Quantity > currentItem.Quantity)
-            {
-                ErrorLabel.Text += "You have exceeded the stock for " + item.Name;
-                errorCounter++;
-            }
-        }
-
-        if (errorCounter > 0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
     }
 }

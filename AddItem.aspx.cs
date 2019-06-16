@@ -39,7 +39,6 @@ public partial class AddItem : System.Web.UI.Page
         Item newItem = new Item();
         newItem.Name = ItemNameTextBox.Text;
         newItem.PricePerItem = Convert.ToDouble(PriceTextBox.Text);
-        newItem.Quantity = Convert.ToInt32(StockTextBox.Text);
         newItem.Description = DescriptionTextBox.Text;
         string uploadFolderPath = Server.MapPath(@"/product_images/" + newItem.Id + "-" + newItem.Name + "/");
 
@@ -71,7 +70,6 @@ public partial class AddItem : System.Web.UI.Page
 
             ItemNameTextBox.Text = "";
             PriceTextBox.Text = "";
-            StockTextBox.Text = "";
             DescriptionTextBox.Text = "";
 
             ProductImageFileUpload.Dispose();

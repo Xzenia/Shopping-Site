@@ -26,18 +26,10 @@
                         <tr>
                             <td> </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <asp:Label id ="ProductStockLabel" runat="server" Text="Stock Available: " Font-Size="12pt" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><br /></td>
-                        </tr>
+                        <tr><td></td></tr>
                         <tr>
                             <td> <asp:Label id ="QuantityLabel" runat="server" Text="Quantity: " Font-Size="10pt" /> </td> 
-                            <td> <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="3" /> </td>
-                            <td> <asp:RangeValidator ID="RangeValidator" runat="server" ForeColor="Red" ErrorMessage="Only numbers from 1-999 are allowed." ControlToValidate="QuantityTextBox" Display="Dynamic" Type="Integer" MinimumValue="1" MaximumValue="999"  /> </td>
+                            <td> <asp:TextBox ID="QuantityTextBox" runat="server" required="true"  TextMode="Number" Text="1" MaxLength="2" /> </td>
                         </tr>
                     </table>
             </td>

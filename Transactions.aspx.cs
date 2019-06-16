@@ -86,6 +86,7 @@ public partial class Transactions : System.Web.UI.Page
             Account account = accountController.retrieveAccountDetails(accountId);
 
             transactionController.updateTransactionStatus(TransactionGridView.SelectedRow.Cells[1].Text.ToString(), TransactionGridView.SelectedRow.Cells[2].Text.ToString(), TransactionStatusDropDownList.SelectedValue);
+            
             if (TransactionStatusDropDownList.SelectedValue.Equals("Delivering"))
             {
                 string message = "Dear " + account.FirstName + " " + account.LastName + "<br/> <br/>We would like to inform you that your order is about to be delivered at the address you have provided <strong>(" + account.Address + ")</strong>" +

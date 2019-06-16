@@ -46,11 +46,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td> 
-                             <strong> Stock Available: <%# Eval("Stock") %> </strong>
-                        </td>
-                    </tr>
-                    <tr>
                          <td> 
                              <asp:ImageButton ID="DetailsButton" runat="server" imageurl="~/images/detail.jpg"  PostBackUrl='<%#"Details.aspx?id="+Eval("ItemID")%>' BackColor="#FF9933" BorderStyle="None" ForeColor="White"  />
                         </td>

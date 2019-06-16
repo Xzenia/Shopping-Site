@@ -13,9 +13,6 @@
                             <td> Price: </td> <td> <asp:TextBox ID="PriceTextBox" runat="server" required="true"/> </td>
                             <td> <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ForeColor="Red" ErrorMessage="Only non-negative numbers are allowed!" ControlToValidate="PriceTextBox" ValidationExpression="^[+]?\d+(\.\d+)?$"/> </td>
                         </tr>
-                        <tr> 
-                            <td> Stock: </td> <td> <asp:TextBox ID="StockTextBox" runat="server" required="true"/> </td>
-                        </tr>
                         <tr>
                             <td>Item Description: </td>
                             <td> <asp:TextBox ID="DescriptionTextBox" runat="server" required="true" Height="61px" Rows="3" Width="199px" TextMode="MultiLine"/> </td>

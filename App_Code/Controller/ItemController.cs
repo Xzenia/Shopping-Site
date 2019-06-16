@@ -12,7 +12,6 @@ public class ItemController
         SqlCommand command = new SqlCommand("AddItem", ConstantVariables.connect);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@Name", item.Name);
-        command.Parameters.AddWithValue("@Stock", item.Quantity);
         command.Parameters.AddWithValue("@PricePerItem", item.PricePerItem);
         command.Parameters.AddWithValue("@Description", item.Description);
         command.Parameters.AddWithValue("@ProductImagePath", item.ProductImagePath);
@@ -29,7 +28,6 @@ public class ItemController
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@ItemID", item.Id);
         command.Parameters.AddWithValue("@Name", item.Name);
-        command.Parameters.AddWithValue("@Stock", item.Quantity);
         command.Parameters.AddWithValue("@PricePerItem", item.PricePerItem);
         command.Parameters.AddWithValue("@Description", item.Description);
         command.Parameters.AddWithValue("@ProductImagePath", item.ProductImagePath);
@@ -61,7 +59,6 @@ public class ItemController
         ConstantVariables.connect.Close();
     }
 
-
     public Item retrieveItem(int itemID)
     {
         SqlCommand command = new SqlCommand("RetrieveItem", ConstantVariables.connect);
@@ -78,7 +75,6 @@ public class ItemController
         {
             item.Id = Convert.ToInt32(dataReader["ItemID"]);
             item.Name = Convert.ToString(dataReader["Name"]);
-            item.Quantity = Convert.ToInt32(dataReader["Stock"]);
             item.Description = Convert.ToString(dataReader["Description"]);
             item.PricePerItem = Convert.ToDouble(dataReader["PricePerItem"]);
             item.SalePrice = Convert.ToDouble(dataReader["SalePrice"]);
@@ -133,33 +129,4 @@ public class ItemController
 
         return dataSet;
     }
-
-    public DataTable ProcessExcel(string fileLocation)
-    {
-        using (OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileLocation + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1\""))
-        {
-            using (OleDbCommand comm = new OleDbCommand())
-            using (var dt = new DataTable())
-            {
-                comm.CommandText = "Select * from [Sheet1$]";
-                comm.Connection = conn;
-                using (OleDbDataAdapter da = new OleDbDataAdapter())
-                {
-                    try
-                    {
-                        conn.Open();
-                        da.SelectCommand = comm;
-                        da.Fill(dt);
-                        conn.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.Write(ex.ToString());
-                    }
-                    return dt;
-                }
-            }
-        }
-    }
-
 }
